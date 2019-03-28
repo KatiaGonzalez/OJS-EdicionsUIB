@@ -1,0 +1,596 @@
+/**
+ * estil_MATS.css
+ *
+ * Created by Katia Gonzalez de la Fuente at 2018
+ *
+ * MATS theme stylesheet.
+ *
+ */
+
+*{
+     box-sizing: border-box;
+}
+
+:root{
+    --journal-color: #9F5727;
+    --content-background-color: #FFFFFF;
+    --main-color-text: #000000;
+    --main-fonts-text: 'Arial Unicode MS',Tahoma,Verdana,Arial, 'Times New Roman';
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--content-background-color);
+    font-family: var(--main-fonts-text);
+    font-size: 1em;
+    text-align: left;
+    color: var(--main-color-text);
+}
+
+div{
+    text-align: left;
+}
+
+ul, ol{
+    list-style-position: inside;
+}
+/* Upgrade banner*/
+#headerTitle>h1::after{
+	content: "Aviso Importante: El 20 de Noviembre no se registrarán los cambios realizados en la edición de las revistas aquí alojadas devido a que se llevará a cabo una actualización de este sitio web. También es posible que el acceso se vea interrumpido. Disculpen las molestias.";
+
+}
+
+/*TAULES*/
+table{
+    width: 100%;
+}
+table td{
+    vertical-align: top;
+}
+#content td h1, #content td h2, #content td h3, #content td h4, #content td h5, #content td h6 {
+    margin: 0;
+    padding: 0;
+}
+form table td.label, form table td.value{
+    padding: .1em 0;
+    vertical-align: middle;
+}
+#sidebar table td{
+    padding-top: .1em;
+    padding-bottom: .5em;
+}
+#main #content table.listing td.nodata, table.info td.nodata {
+    text-align: center;
+    font-style: italic;
+}
+#content form#register table.data td {
+    padding-top: 0.8em;
+    padding-bottom: 0.1em;
+}
+
+input[type=checkbox]{
+    background-color: #FFFFFF;
+}
+
+input.textField, select.selectMenu, textarea.textArea, input.uploadField{
+    padding: .2em;
+    vertical-align: middle;
+    font-family: var(--main-fonts-text);
+    background-color: #f7fafc;
+    font-size: 1em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #3f220f;
+    border-radius: 4px;
+    color: #000;
+}
+
+
+/*LINKS*/
+a:link, a:visited{
+    color: var(--journal-color);
+    background: transparent;
+}
+
+a:hover, a:active{
+    color: #333;
+    background: transparent;
+}
+
+/*llevar l'efecte de que es posi en blau tot el borde*/
+select:focus, input:focus{ 
+    outline: none;
+}
+select:hover{ 
+    cursor: pointer; 
+}
+
+/*PAGINA*/
+/*Aixó s'aplica a un div que te el borde amb puntets ho llevo perque es anacronicament ortera*/
+div.separator{
+    display: none;
+}
+
+#container{
+    width:100%;
+    min-height: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    overflow-x:visible;
+    overflow-y:visible;
+    background-color: #FFFFFF;
+}
+
+/*HEADER DE PAGINA*/
+#header{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    display: block;
+    position: relative;
+    top:49.065px;
+    text-align: center;
+}
+
+#header, #sidebar{
+    display: block;
+    position: relative;
+    top: 49.064px;
+}
+
+#header h1{
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+#headerTitle{
+    margin: 0;
+    padding: 1%;
+    background-color: var(--journal-color);
+}
+
+#headerTitle>h1>img{
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+    width : 100%;
+}
+
+/*Estilos de TEXTE: fuente, tamaño, alineación y color*/
+#body{
+    font-size: inherit; /*from body*/
+    text-align: left;
+    color: inherit;
+}
+#body>#main>#content{
+    font-family: inherit;
+    font-size: inherit;
+    text-align: inherit;
+    color: inherit;
+    line-height: 1.9em;
+}
+#body>#sidebar{
+    font-family: inherit;
+    font-size: 0.8em;
+    text-align: inherit;
+    color: inherit;
+}
+/* BOTONS Y CAPSES DE TXT*/
+#body input[type=text], #body input[type=password], #body textarea, #body select{
+}
+
+#body select{
+    overflow: auto;
+}
+
+#body input.button, #body input.defaultButton {
+    margin: .2em;
+    padding-top: 0.3em;
+    padding-right: 0.5em;
+    padding-bottom: 0.3em;
+    padding-left: 0.5em;
+    cursor: pointer; 
+    font-size: 1.5em;
+    font-family: var(--main-fonts-text);
+    background-color: var(--journal-color);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+}
+
+#body input.button:hover, #body input.defaultButton:hover{
+    opacity: 0.8;
+} 
+
+input.defaultButton{
+    font-weight: bold;
+}
+
+/*MENU*/
+#sidebar{
+    overflow: visible;
+    width: auto;
+    height: auto;
+}
+
+#sidebar div.block{
+    overflow: visible;
+    margin: 0;
+    padding-bottom: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 1.5em;
+    padding-left: 1.5em;
+    border-bottom: #d8bba8 solid 0.1em;
+}
+
+#sidebar div {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+span.blockTitle+br+strong {
+    font-size: 1.5em;
+}
+#sidebar input.textField, #sidebar select.selectMenu, #sidebar input.button{
+    font-family: var(--main-fonts-text);
+    font-size: 1.2em;
+    padding: .3em;
+    vertical-align: middle;
+}
+#sidebar input.textField, #sidebar select.selectMenu{
+    width: 100%;
+    margin-top: .1em;
+    margin-bottom: .5em;
+}
+
+#sidebar input.button,#sidebar input.defaultButton{
+    font-size: 1.5em;
+}
+
+#sidebar input.button:hover, #sidebar input.defaultButton{
+    opacity: 0.8;
+}
+
+#sidebar div.block span.blockTitle {
+    font-size: 1.5em; /*com que estan en mayuscules y els subtitols en minuscules es nota molt la diferencia de tamany*/
+}
+
+#sidebar a.blockTitle {
+    font-size: 1.4em;
+    line-height: 1.8;
+}
+
+#sidebar a{
+    text-decoration-line: none;
+    display: block;
+}
+
+#sidebar a:hover, #sidebar a:active{
+    background-color: var(--journal-color);
+    color: #fff;
+}
+
+#sidebar div#sidebarUser td>label:first-child { /*alinear les labels del login*/
+    display: block;
+    width: 100%;
+    text-align: right;
+    vertical-align: middle;
+    padding: .4em;
+}
+
+#sidebar div.block span.blockSubtitle{
+    font-size: 1.4em;
+    line-height: 1.8em;
+}
+
+#sidebar div.block label, #sidebar div.block, #sidebar div.block ul{
+    line-height: 1.8em;
+}
+#sidebar div.block, #sidebar div.block ul{
+    font-size: 1.5em;
+}
+#sidebar div.block label{
+    font-size: 1.1em;
+}
+ #sidebar div.block ul{
+     padding-top: 0;
+     padding-right: 0;
+     padding-bottom: 0;
+     padding-left: 1.5em;
+     list-style-type: none;
+     border-left: solid #3f220f 2.4px;
+ }
+
+#leftSidebar{
+     width: 25%;
+     margin: 0;
+     padding: 0;
+     float: left;
+     background: #FFFFFF;
+/*Opció de menu tot bordetjat (amb lineas envoltant tot el menu*/
+	border-right: 1px solid #5f3417;
+	border-bottom: 1px solid #5f3417;
+	border-radius: 0 0 8px 0;
+}
+
+#rightSidebar>div:last-child, #leftSidebar>div:last-child  {
+    border-bottom-style: none;
+}
+/*Twitter timeline site into leftSidebar*/
+#leftSidebar div.timeline {
+    width: 100%;
+    min-height: 100px;
+    max-height: 400px;
+    overflow: visible;
+}
+/* COS central de la pagina */
+#main {
+    position: relative;
+    top: 49.064px;
+    width: 75%;
+    padding: 0em 2.5em 0em 2.5em;
+    margin: 0;
+}
+
+#main h1, #main h2, #main h3, #main h4, #main h5{
+    font-family: var(--main-fonts-text);
+    font-size: initial;
+    font-weight: initial;
+    color: #000000;
+    text-align: left;
+}
+
+#main>h1:first-child, #id>h2:first-child, #id>h3:first-child {
+    text-align: center;
+}
+/*Aquest estil esta possat perque sino a la part d'edicio els titols (que son h4) no es distingeixen molt be*/
+#content h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#main>div#navbar{
+    width: 100%;
+    margin: 0;
+    padding:0;
+    border: none;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: block;
+    z-index: 4;
+    background-color: #fff;
+}
+
+#main>#navbar a:link, #main>#navbar a:visited, #main>#breadcrumb a:link, #main>#breadcrumb a:visited{
+    color: #000000;
+    background: transparent;
+}
+
+#main>#breadcrumb a:hover, #main>#breadcrumb a:active{
+    color: var(--journal-color);
+    background: transparent;
+}
+
+#navbar ul.menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#main>#navbar ul>li{
+    margin: 0;
+    padding: 0;
+    display: inherit;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 2em;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#navbar ul.menu li:hover{
+    background-color: var(--journal-color);
+    color: #FFFFFF;
+}
+
+#main>#navbar ul>li#categories{
+    display:none;
+}
+
+#main>#navbar a{
+    padding: 0.5em 0em;
+    margin: 0;
+    display: block;
+    flex-grow: 1;
+    justify-content: space-between;
+    font-family: var(--main-fonts-text);
+    color: #000000;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+#main>#navbar a:hover, #main>#navbar a:active{
+    color: #FFFFFF;
+    background: transparent;
+}
+
+
+#main>#breadcrumb+h1, #main>#breadcrumb+h2, #main>#breadcrumb+h3, #main>#breadcrumb+h4, #main>#breadcrumb+h5{
+    text-align: center;
+}	
+
+#breadcrumb{
+    font-size: 1em;
+    font-family: var(--main-fonts-text);
+    text-align: left;
+    color: #000;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#main #content ul, #main #content ol{
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 1.5em;
+}
+
+#content li {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+}
+#content{
+    border: none;
+    font-size: var(--main-fonts-text);
+}
+
+#main h2 {
+    font-size: 2em;
+}
+
+#content h3 {
+    font-size: 1.5em;
+}
+
+#content form#register {
+    font-size: 0.8em;
+}
+
+#content form#searchForm {
+    font-size: 0.8em;
+}
+
+#content td.label {
+    text-align: right;
+}
+
+#content form#register input[type=password], #content form#register input[type=text], #content form#register textarea.textArea{
+    margin-top: 0.4em;
+    margin-bottom: 0em;
+}
+
+#body>#main>#content>div#journalDescription{
+    text-align: justify;
+}
+
+div#issueCoverImage{ /*div que conte la imatge de portada de Revista*/
+    margin-bottom: 10%;
+}
+
+/*formulari de cerca (s'accedeix a traves del nav "Cerca"*/
+#content>div#search>form#searchForm>table.data td.value>input[type=text]{  /*Input de la cerca (no avançada)*/
+    font-size: 1.5em;
+    padding: 0.25em;
+}
+#content>div#search>form#searchForm>div#emptyFilters>div.extrasContainer>table.data + p{  /*Centrar els boto de cerca de la cerca avanzada*/
+    text-align: center;
+}
+
+/*seccio ARXIUS*/
+div#issue, div#issue div.issueCoverImage{
+    overflow: hidden;
+    height: auto;
+}
+div#issue div.issueCoverImage img{
+    margin: 1em 1em 0 0;
+}
+
+/* #journalTitleAndLogo img es per a la PART DE CONFIGURACIO d'imatges de la part de 5 (LOOK) a la configuració de la revista */
+div#issueCoverImage img ,div#issueCoverImage, div#journalTitleAndLogo img, div#pageHeaderTitle img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+}
+/*contingut que surt com a resultat de clicar a les opcions del bloc (sidebar) "NOTIFICACIONS"*/
+table.notifications{
+    margin-top: 0.5em;
+    margin-right: 0;
+    margin-bottom: 1.5em;
+    margin-left: 0;
+}
+
+table.notifications td.notificationContent{
+    width: 40%;
+}
+
+table.notifications td.notificationFunction{
+    min-width: 20%;
+    max-width: 25%;
+}
+form#notificationSettings p {
+    text-align: center;
+}
+
+/*FOOTER*/
+div#pageFooter {
+    border-top-style: ridge;
+    border-top-color: var(--journal-color);
+    padding: 1% 0;
+}
+
+div#logoCC {
+    width: 25%;
+    padding: 1% 0;
+}
+
+/* CONFIGURACIO: Aditional Content (se muestra en la pág home y es editable desde el paso 5.2 (look)*/
+div.contentImgInline{
+    display: inline-block;
+    position: relative;
+    width: 0.9em;    
+    height: 0.91em;
+    margin: 0 0.4em;
+    padding: 0;
+}
+
+div.contentImgInline a{
+    display: inline-block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 0.9em;
+    height: 0.91em;
+    top: 0;
+}
+
+
+img.imgInline{
+    display: inline-block;  
+    position: absolute;  
+    object-fit: contain;        
+    width: 100%;
+    height: 100%;
+    margin:0;
+    padding: 0;
+}
+
+
+
+

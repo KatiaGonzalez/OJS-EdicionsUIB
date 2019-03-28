@@ -1,0 +1,1 @@
+<?php return '[{"text":"Endometriosis","size":1},{"text":"Abdominal wall","size":1},{"text":"Cystitis","size":1},{"text":"Bladder Tumor","size":1},{"text":"Intravesical Chemotherapy","size":1},{"text":"Adenoma","size":1},{"text":"Anus Neoplasms","size":1},{"text":"Genital Neoplasms","size":1},{"text":"Mammary Glands","size":1}]'; ?>

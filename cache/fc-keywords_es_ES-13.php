@@ -1,0 +1,1 @@
+<?php return '[{"text":"intususcepci\\u00f3n","size":1},{"text":"bypass g\\u00e1strico","size":1},{"text":"cirug\\u00eda bari\\u00e1trica","size":1},{"text":"obstrucci\\u00f3n","size":1},{"text":"Cirug\\u00eda","size":1},{"text":"ATLS","size":1},{"text":"Tauromaquia","size":1}]'; ?>

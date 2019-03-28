@@ -1,0 +1,173 @@
+/**
+ * MATS_estil.css
+ *
+ * Copyright (c) 2003-2012 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * MATS theme stylesheet.
+ *
+ * $Id$
+ */
+
+body {
+	background-color: #fff;
+	font-family: "Times New Roman", Times, Georgia, serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #9f5727;
+}
+
+a:active {
+	color: #39c;
+}
+
+a:visited {
+	color: #9f5727;
+}
+
+a:hover {
+	color: #EEEEFF;
+	background: #9f5727;
+}
+
+label.error {
+	color: #f60;
+}
+
+input.defaultButton {
+	color: #EEEEFF;
+	background: #9f5727;
+}
+
+#container {
+	background-color: #fff;
+	font-size: 1em;
+}
+
+#header {
+	min-height: 100px;
+	background-color: #fff;
+}
+
+#headerTitle {
+	text-align: center;
+}
+
+#header h1 {
+	line-height: 2.5;
+	font-family: "Times New Roman", Times, Georgia, serif;
+	text-transform: uppercase;
+	letter-spacing: 10px;
+	font-size: 2em;
+	background-color: #9f5727;
+	color:  #fff;
+}
+
+#footer {
+	background-color: #9f5727;
+	color:  #fff;
+}
+
+#footerContent {
+	color:  #fff;
+}
+
+#main {
+	background-color: #fff;
+	border-top: 1px #9f5727;
+	border-bottom: 1px dotted #9f5727;
+	margin-top: 15px;
+}
+
+#main h2 {
+	font-family: "Times New Roman", Times, Georgia, serif;
+	text-transform: uppercase;
+}
+
+#main h3 {
+	font-family: "Times New Roman", Times, Georgia, serif;
+	text-transform: uppercase;
+}
+
+#navbar {
+	border-bottom: 1px dotted #9f5727;
+	text-align: center;
+}
+
+#breadcrumb {
+	height: 18px;
+	line-height: 1.5em;
+	text-align: center;
+	border-bottom: 1px dotted #9f5727;
+	padding: 0;
+	font-style: italic;
+}
+
+#content {
+	border-top: 1px dotted #9f5727;
+}
+
+#content h3 {
+	font-family:  "Times New Roman", Times, Georgia, serif;
+	text-transform: uppercase;
+}
+
+#content h4 {
+	font-family:  "Times New Roman", Times, Georgia, serif;
+	text-transform: uppercase;
+}
+
+#content h5 {
+	text-transform: uppercase;
+}
+
+span.highlight {
+	border-bottom: 1px dotted #9f5727;
+}
+
+table.listing tr.highlight {
+	background: #fcff64;
+}
+
+table.listing tr.fastTracked {
+	background-color: #EEEEFF;
+}
+
+table.listing td.headseparator {
+	border-top: 1px dotted #9f5727;
+}
+
+table.listing td.endseparator {
+	border-top: 1px dotted #9f5727;
+}
+
+span.formError {
+	color: #f60;
+}
+
+ul.formErrorList {
+	color: #f60;
+}
+
+div.separator {
+	border-bottom: 1px dotted #9f5727;
+}
+
+#rightSidebar ul, #leftSidebar ul {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#rightSidebar li, #leftSidebar li {
+	list-style-type: none;
+}
+
+#rightSidebar, #leftSidebar {
+	margin-top: 5px;
+	border-bottom: 1px dotted #9f5727;
+}

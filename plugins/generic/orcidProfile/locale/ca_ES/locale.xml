@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/orcidPlugin/locale/en_US/locale.xml
+  *
+  * Copyright (c) 2015-2018 University of Pittsburgh
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * Credits: https://pkp.sfu.ca/wiki/index.php?title=OJS:_Spanish_(es_ES)
+  * ORCID Profile plugin localization strings
+-->
+ 
+<locale name="ca_ES" full_name="Català">
+
+	<message key="plugins.generic.orcidProfile.connect">Crea o connecta el teu ORCID iD</message>
+	<message key="plugins.generic.orcidProfile.displayName">Mòdul Incloure perfil ORCID</message>
+	<message key="plugins.generic.orcidProfile.description"><![CDATA[Permet la importació del perfil d'usuari 'ORCID.]]></message>
+	<message key="plugins.generic.orcidProfile.authFailure">OJS no ha pogut comunicar-se amb el servei ORCID. Poseu-vos en contacte amb l'administrador de la revista amb el vostre nom, ORCID iD i els detalls del vostre enviament.</message>
+	<message key="plugins.generic.orcidProfile.author.submission.failure">El vostre enviament no s'ha pogut associar correctament amb el vostre ORDID iD. Poseu-vos en contacte amb l'administrador de la revista amb el vostre nom, ORCID iD i els detalls del vostre enviament.</message>
+	<message key="plugins.generic.orcidProfile.author.submission">Enviament ORCID</message>
+	<message key="plugins.generic.orcidProfile.author.submission.success">El vostre enviament s'ha associat correctament amb el vostre ORDID iD.</message>
+	<message key="plugins.generic.orcidProfile.emailOrOrcid">Adreça de Email o ORCID iD:</message>
+	<message key="plugins.generic.orcidProfile.fieldset">ORCID</message>
+	<message key="plugins.generic.orcidProfile.instructions"><![CDATA[Podeu omplir aquest formulari amb informació prèvia d'un perfil ORCID. Introduïu l'adreça de correu electrònic o ORDID iD associat al perfil ORCID, feu clic a "Enviar".]]></message>
+	<message key="plugins.generic.orcidProfile.manager.orcidProfileSettings">Configuració del perfil ORCID</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.description">Configureu l'APLICACIÓ ORCID per utilitzar-la a l'hora d'extreure informació del perfil ORCID al perfil d'usuari.</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidProfileAPIPath">API d'ORCID</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidProfileAPIPath.public">Públic</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidProfileAPIPath.publicSandbox">Públic Sandbox</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidProfileAPIPath.member">Membre</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidProfileAPIPath.memberSandbox">Sandbox membre</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidClientId">Identificador de client</message>
+	<message key="plugins.generic.orcidProfile.manager.settings.orcidClientSecret">Secret de Client</message>
+	<message key="plugins.generic.orcidProfile.noData">No s'ha pogut trobar cap informació d'ORCID.</message>
+</locale>
