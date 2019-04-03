@@ -3,8 +3,8 @@
 /**
  * @file classes/user/form/ChangePasswordForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ChangePasswordForm
@@ -38,11 +38,6 @@ class ChangePasswordForm extends Form {
 			return Validation::checkCredentials($user->getUsername(),$password);
 		}));
 		$this->addCheck(new FormValidatorLength($this, 'password', 'required', 'user.register.form.passwordLengthRestriction', '>=', $site->getMinPasswordLength()));
-		//Afegit per Katia Gonzalez per controlar que la password estigui formada per lletres i números
-		$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.register.form.passwordBadFormat', function($password){
-			    return (preg_match("#[0-9]+#", $password) + preg_match("#[a-zA-Z]+#", $password) == 2); 
-		}));
-		//end afegit
 		$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.newPasswordRequired'));
 		$form = $this;
 		$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.register.form.passwordsDoNotMatch', function($password) use ($form) {
@@ -71,16 +66,15 @@ class ChangePasswordForm extends Form {
 	}
 
 	/**
-	 * Fetch the form.
-	 * @param $request PKPRequest
+	 * @copydoc Form::fetch
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'minPasswordLength' => $this->getSite()->getMinPasswordLength(),
 			'username' =>  $this->getUser()->getUsername(),
 		));
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -113,4 +107,4 @@ class ChangePasswordForm extends Form {
 	}
 }
 
-?>
+

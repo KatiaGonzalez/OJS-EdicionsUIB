@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/openAIRE/OpenAIREPlugin.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OpenAIREPlugin
@@ -96,7 +96,7 @@ class OpenAIREPlugin extends GenericPlugin {
 		$smarty =& $params[1];
 		$output =& $params[2];
 
-		$output .= $smarty->fetch($this->getTemplatePath() . 'projectIDEdit.tpl');
+		$output .= $smarty->fetch($this->getTemplateResource('projectIDEdit.tpl'));
 		return false;
 	}
 
@@ -324,4 +324,4 @@ class OpenAIREPlugin extends GenericPlugin {
 
 
 }
-?>
+

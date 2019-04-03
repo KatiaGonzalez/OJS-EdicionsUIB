@@ -3,8 +3,8 @@
 /**
  * @file classes/submission/form/PKPSubmissionSubmitStep1Form.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PKPSubmissionSubmitStep1Form
@@ -16,6 +16,9 @@
 import('lib.pkp.classes.submission.form.SubmissionSubmitForm');
 
 class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
+	/** @var boolean Is there a privacy statement to be confirmed? */
+	public $hasPrivacyStatement = true;
+
 	/**
 	 * Constructor.
 	 * @param $context Context
@@ -23,6 +26,13 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function __construct($context, $submission = null) {
 		parent::__construct($context, $submission, 1);
+
+		$enableSiteWidePrivacyStatement = Config::getVar('general', 'sitewide_privacy_statement');
+		if (!$enableSiteWidePrivacyStatement && $context) {
+			$this->hasPrivacyStatement = (boolean) $context->getSetting('privacyStatement');
+		} else {
+			$this->hasPrivacyStatement = (boolean) Application::getRequest()->getSite()->getSetting('privacyStatement');
+		}
 
 		// Validation checks for this form
 		$supportedSubmissionLocales = $context->getSupportedSubmissionLocales();
@@ -32,7 +42,9 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->addCheck(new FormValidator($this, 'copyrightNoticeAgree', 'required', 'submission.submit.copyrightNoticeAgreeRequired'));
 		}
 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'submission.submit.availableUserGroupsDescription'));
-		$this->addCheck(new FormValidator($this, 'privacyConsent', 'required', 'user.profile.form.privacyConsentRequired'));
+		if ($this->hasPrivacyStatement) {
+			$this->addCheck(new FormValidator($this, 'privacyConsent', 'required', 'user.profile.form.privacyConsentRequired'));
+		}
 
 		foreach ((array) $context->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$this->addCheck(new FormValidator($this, "checklist-$key", 'required', 'submission.submit.checklistErrors'));
@@ -43,8 +55,8 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 * Perform additional validation checks
 	 * @copydoc Form::validate
 	 */
-	function validate() {
-		if (!parent::validate()) return false;
+	function validate($callHooks = true) {
+		if (!parent::validate($callHooks)) return false;
 
 		// Ensure that the user is in the specified userGroupId or trying to enroll an allowed role
 		$userGroupId = (int) $this->getData('userGroupId');
@@ -66,9 +78,9 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Fetch the form.
+	 * @copydoc SubmissionSubmitForm::fetch
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$user = $request->getUser();
 		$templateMgr = TemplateManager::getManager($request);
 
@@ -111,7 +123,7 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				$managerUserGroup = $userGroupDao->getById($managerUserGroupAssignment->getUserGroupId());
 				$userGroupNames[$managerUserGroup->getId()] = $managerUserGroup->getLocalizedName();
 			}
-			$managerGroups = join(__('common.listSeparator'), $userGroupNames);
+			$managerGroups = join(__('common.commaListSeparator'), $userGroupNames);
 			$userGroupNames = array_replace($userGroupNames, $availableUserGroupNames);
 
 			// Set default group to default manager group
@@ -130,16 +142,21 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$noExistingRoles = true;
 		}
 
-		$templateMgr->assign('managerGroups', $managerGroups);
-		$templateMgr->assign('userGroupOptions', $userGroupNames);
-		$templateMgr->assign('defaultGroup', $defaultGroup);
-		$templateMgr->assign('noExistingRoles', $noExistingRoles);
+		$templateMgr->assign([
+			'managerGroups' => $managerGroups,
+			'userGroupOptions' => $userGroupNames,
+			'defaultGroup' => $defaultGroup,
+			'noExistingRoles' => $noExistingRoles,
+			'hasPrivacyStatement' => $this->hasPrivacyStatement,
+		]);
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
 	 * Initialize form data from current submission.
+	 * @see SubmissionSubmitForm::initData
+	 * @param $data array
 	 */
 	function initData($data = array()) {
 		if (isset($this->submission)) {
@@ -152,11 +169,11 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$supportedSubmissionLocales = $this->context->getSupportedSubmissionLocales();
 			// Try these locales in order until we find one that's
 			// supported to use as a default.
+			$keys = array_keys($supportedSubmissionLocales);
 			$tryLocales = array(
-				$this->getFormLocale(), // Current form locale
 				AppLocale::getLocale(), // Current UI locale
 				$this->context->getPrimaryLocale(), // Context locale
-				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
+				$supportedSubmissionLocales[array_shift($keys)] // Fallback: first one on the list
 			);
 			$this->_data = $data;
 			foreach ($tryLocales as $locale) {
@@ -188,8 +205,13 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 * @param $submission Submission
 	 */
 	function setSubmissionData($submission) {
-		$this->submission->setLanguage(PKPString::substr($this->submission->getLocale(), 0, 2));
+		$oldLocale = $this->submission->getLocale();
 		$this->submission->setLocale($this->getData('locale'));
+		$this->submission->setLanguage(PKPString::substr($this->submission->getLocale(), 0, 2));
+		if ($oldLocale != $this->getData('locale')) {
+			$authorDao = DAORegistry::getDAO('AuthorDAO');
+			$authorDao->changeSubmissionLocale($this->submission->getId(), $oldLocale, $this->getData('locale'));
+		}
 	}
 
 	/**
@@ -257,12 +279,11 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 
 	/**
 	 * Save changes to submission.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, $request) {
+	function execute() {
 		$submissionDao = Application::getSubmissionDAO();
+		$request = Application::getRequest();
 		$user = $request->getUser();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
@@ -301,9 +322,19 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			// Set user to initial author
 			$authorDao = DAORegistry::getDAO('AuthorDAO');
 			$author = $authorDao->newDataObject();
-			$author->setFirstName($user->getFirstName());
-			$author->setMiddleName($user->getMiddleName());
-			$author->setLastName($user->getLastName());
+			// if no user names exist for this submission locale,
+			// copy the names in default site primary locale for this locale as well
+			$userGivenNames = $user->getGivenName(null);
+			$userFamilyNames = $user->getFamilyName(null);
+			if (is_null($userFamilyNames)) $userFamilyNames = array();
+			if (empty($userGivenNames[$this->submission->getLocale()])) {
+				$site = Application::getRequest()->getSite();
+				$userGivenNames[$this->submission->getLocale()] = $userGivenNames[$site->getPrimaryLocale()];
+				// then there should also be no family name for the submission locale
+				$userFamilyNames[$this->submission->getLocale()] = !empty($userFamilyNames[$site->getPrimaryLocale()]) ? $userFamilyNames[$site->getPrimaryLocale()] : '';
+			}
+			$author->setGivenName($userGivenNames, null);
+			$author->setFamilyName($userFamilyNames, null);
 			$author->setAffiliation($user->getAffiliation(null), null);
 			$author->setCountry($user->getCountry());
 			$author->setEmail($user->getEmail());
@@ -333,5 +364,3 @@ class PKPSubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		return $this->submissionId;
 	}
 }
-
-?>

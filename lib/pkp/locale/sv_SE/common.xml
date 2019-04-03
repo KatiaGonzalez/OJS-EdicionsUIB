@@ -4,15 +4,15 @@
 <!--
   * locale/sv_SE/common.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Localization information: https://pkp.sfu.ca/wiki/index.php?title=OJS:_Swedish_(sv_SE)
   * Localization strings.
   -->
 
 <locale name="sv_SE" full_name="Svenska">
-  <message key="common.publicKnowledgeProject">Public Knowledge Project</message>
+	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.currentStyleSheet">Aktuell stilmall</message>
 	<message key="about.description">Beskrivning</message>
 	<message key="about.guidelines">Riktlinjer</message>
@@ -79,18 +79,18 @@
 	<message key="common.captchaField">Validering</message>
 	<message key="common.ccLicense"><![CDATA[
 		<br /><br />
-		<a target="_blank" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+		<a target="_blank" rel="license" href="https://creativecommons.org/licenses/by/3.0/">
 			<img alt="Creative Commons-licens" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png"/>
 		</a>
 		<br />
-		Detta verk är licensierat under en <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Erkännande Attribution 3.0-licens</a>.
+		Detta verk är licensierat under en <a rel="license" target="_blank" href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Erkännande Attribution 3.0-licens</a>.
 	]]></message>
 	<message key="common.ccLicense.rt"><![CDATA[
 	<div class="rtBlock">
 		<br />
-		<a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png" /></a>
+		<a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png" /></a>
 		<br />
-		Detta verk är licensierat under en <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Erkännande Attribution 3.0-licens</a>.
+		Detta verk är licensierat under en <a rel="license" target="_blank" href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Erkännande Attribution 3.0-licens</a>.
 	</div>
 	]]></message>
 	<message key="common.changesSaved">Dina ändringar sparades.</message>
@@ -173,7 +173,8 @@
 	<message key="common.languages">Språk</message>
 	<message key="common.less">Färre</message>
 	<message key="common.lessThan">{$value} eller färre</message>
-	<message key="common.listSeparator">, </message>
+	<message key="common.commaListSeparator">, </message>
+	<message key="common.semicolonListSeparator">; </message>
 	<message key="common.manage">Administrera</message>
 	<message key="common.mailingAddress">Adress</message>
 	<message key="common.billingAddress">Faktureringsadress (om annan)</message>
@@ -214,7 +215,6 @@
 	<message key="common.pluginDisabled">Pluginet "{$pluginName}" har avaktiverats.</message>
 	<message key="common.prefix">Prefix</message>
 	<message key="common.prefixAndTitle.tip">Exempel: En, Det, Den</message>
-	<message key="common.subtitle.tip">Undertiteln, som är frivillig, kommer att visas efter huvudtiteln, separerad med kolon (:).</message>
 	<message key="common.preview">Förhandsgranska</message>
 	<message key="common.publisher">Utgivare</message>
 	<message key="common.quality">Kvalitet</message>

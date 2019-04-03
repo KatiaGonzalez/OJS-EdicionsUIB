@@ -4,8 +4,8 @@
 <!--
   * locale/en_US/submission.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings.
@@ -19,7 +19,7 @@
 	<message key="submission.submit.availableUserGroups">Submit As</message>
 	<message key="submission.submit.availableUserGroupsDescription">Select the role that best describes your contribution to this submission.</message>
 	<message key="submission.submit.contactConsent">Corresponding Contact</message>
-	<message key="submission.submit.contactConsentDescription">Yes, I would like to be contacted about this submission.</message>
+	<message key="submission.submit.contactConsentDescription">I agree to be contacted about this submission.</message>
 	<message key="submission.submit.userGroupDescriptionManagers">Submit in any of the following roles if you would like to be able to edit and publish this submission yourself: {$managerGroups}</message>
 	<message key="submission.submit.submissionChecklist">Submission Requirements</message>
 	<message key="submission.submit.submissionChecklistDescription">You must read and acknowledge that you've completed the requirements below before proceeding.</message>
@@ -163,6 +163,7 @@
 	<message key="submission.citations">References</message>
 	<message key="submission.citations.description">Enter each reference on a new line so that it can be extracted.</message>
 	<message key="submission.parsedCitations">Extracted References</message>
+	<message key="submission.parsedCitations.DOI">DOI</message>
 	<message key="submission.parsedCitations.description">The following references have been extracted and will be linked to the submission metadata.</message>
 	<message key="submission.parsedAndSaveCitations">Extract and Save References</message>
 	<message key="submission.comments.addComment">Add Comment</message>
@@ -583,12 +584,12 @@
 	<message key="submission.license.cc.by-nd4">CC Attribution-NoDerivatives 4.0</message>
 	<message key="submission.license.cc.by4">CC Attribution 4.0</message>
 	<message key="submission.license.cc.by-sa4">CC Attribution-ShareAlike 4.0</message>
-	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>]]></message>
-	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>]]></message>
-	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>]]></message>
-	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.</p>]]></message>
-	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>]]></message>
-	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>]]></message>
+	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>]]></message>
+	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>]]></message>
+	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>]]></message>
+	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.</p>]]></message>
+	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>]]></message>
+	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><p>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>]]></message>
 
 	<!-- Submission Queries -->
 	<message key="submission.queries.submission">Pre-Review Discussions</message>
@@ -631,4 +632,16 @@
 	<message key="submission.list.reviewerWorkflowLink"><![CDATA[You have been assigned an editorial role for this submission. Would you like to access the <a href="{$urlEditorialWorkflow}">Editorial workflow</a>?]]></message>
 	<message key="submission.list.incompleteSubmissionNotice">This submission must be completed before an editor will review it.</message>
 	<message key="submission.list.currentStage">Currently in the {$stage} stage.</message>
+	<message key="submission.list.assignEditor">Assign Editor</message>
+
+	<message key="grid.category.categories">Categories</message>
+	<message key="catalog.sortBy.titleAsc">Title (A-Z)</message>
+	<message key="catalog.sortBy.titleDesc">Title (Z-A)</message>
+	<message key="catalog.sortBy.datePublishedAsc">Publication date (oldest first)</message>
+	<message key="catalog.sortBy.datePublishedDesc">Publication date (newest first)</message>
+	<message key="category.coverImage">Cover Image</message>
+	<message key="submission.submit.placement.categories">Categories</message>
+	<message key="submission.currentCoverImage">Current Image</message>
+	<message key="catalog.category.noItems">Nothing has been published in this category yet.</message>
+	<message key="catalog.category.subcategories">Subcategories</message>
 </locale>

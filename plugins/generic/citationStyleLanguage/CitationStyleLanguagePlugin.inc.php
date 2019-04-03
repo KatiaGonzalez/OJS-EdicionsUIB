@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/citationStyleLanguage/CitationStyleLanguagePlugin.inc.php
  *
- * Copyright (c) 2017-2018 Simon Fraser University
- * Copyright (c) 2017-2018 John Willinsky
+ * Copyright (c) 2017-2019 Simon Fraser University
+ * Copyright (c) 2017-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CitationStyleLanguagePlugin
@@ -47,7 +47,6 @@ class CitationStyleLanguagePlugin extends GenericPlugin {
 		if ($success && $this->getEnabled($mainContextId)) {
 			HookRegistry::register('ArticleHandler::view', array($this, 'getArticleTemplateData'));
 			HookRegistry::register('LoadHandler', array($this, 'setPageHandler'));
-			$this->_registerTemplateResource();
 		}
 		return $success;
 	}
@@ -184,7 +183,7 @@ class CitationStyleLanguagePlugin extends GenericPlugin {
 				'id' => 'ris',
 				'title' => __('plugins.generic.citationStyleLanguage.download.ris'),
 				'isEnabled' => true,
-				'useTemplate' => $this->getTemplatePath() . 'citation-styles/ris.tpl',
+				'useTemplate' => $this->getTemplateResource('citation-styles/ris.tpl'),
 				'fileExtension' => 'ris',
 				'contentType' => 'application/x-Research-Info-Systems',
 			),
@@ -316,7 +315,12 @@ class CitationStyleLanguagePlugin extends GenericPlugin {
 		$citationData->id = $article->getId();
 		$citationData->title = htmlspecialchars($article->getLocalizedTitle());
 		$citationData->{'container-title'} = htmlspecialchars($journal->getLocalizedName());
-		$citationData->{'container-title-short'} = htmlspecialchars($journal->getLocalizedAcronym());
+		$citationData->abstract = htmlspecialchars($article->getLocalizedAbstract());
+
+		$abbreviation = $journal->getSetting('abbreviation', $journal->getPrimaryLocale());
+		if (!$abbreviation) $abbreviation = $journal->getSetting('acronym', $journal->getPrimaryLocale());
+		if ($abbreviation) $citationData->{'container-title-short'} = htmlspecialchars($abbreviation);
+
 		$citationData->volume = htmlspecialchars($issue->getData('volume'));
 		// Zotero prefers issue and Mendeley uses `number` to store revisions
 		$citationData->issue = htmlspecialchars($issue->getData('number'));
@@ -337,8 +341,12 @@ class CitationStyleLanguagePlugin extends GenericPlugin {
 			$citationData->author = array();
 			foreach ($authors as $author) {
 				$currentAuthor = new stdClass();
-				$currentAuthor->family = htmlspecialchars($author->getLastName());
-				$currentAuthor->given = htmlspecialchars($author->getFirstName());
+				if (empty($author->getLocalizedFamilyName())) {
+					$currentAuthor->family = htmlspecialchars($author->getLocalizedGivenName());
+				} else {
+					$currentAuthor->family = htmlspecialchars($author->getLocalizedFamilyName());
+					$currentAuthor->given = htmlspecialchars($author->getLocalizedGivenName());
+				}
 				$citationData->author[] = $currentAuthor;
 			}
 		}
@@ -502,22 +510,15 @@ class CitationStyleLanguagePlugin extends GenericPlugin {
 				if ($request->getUserVar('save')) {
 					$form->readInputData();
 					if ($form->validate()) {
-						$form->execute($request);
+						$form->execute();
 						return new JSONMessage(true);
 					}
 				}
 
-				$form->initData($request);
+				$form->initData();
 				return new JSONMessage(true, $form->fetch($request));
 		}
 		return parent::manage($args, $request);
-	}
-
-	/**
-	 * @copydoc Plugin::getTemplatePath($inCore)
-	 */
-	public function getTemplatePath($inCore = false) {
-		return $this->getTemplateResourceName() . ':templates/';
 	}
 
 	/**

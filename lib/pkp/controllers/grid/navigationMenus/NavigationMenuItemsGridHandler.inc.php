@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/navigationMenus/NavigationMenuItemsGridHandler.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NavigationMenuItemsGridHandler
@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.controllers.grid.GridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
-import('lib.pkp.controllers.grid.navigationMenus.form.NavigationMenuItemsForm');
+import('controllers.grid.navigationMenus.form.NavigationMenuItemsForm');
 
 class NavigationMenuItemsGridHandler extends GridHandler {
 
@@ -156,13 +156,13 @@ class NavigationMenuItemsGridHandler extends GridHandler {
 			$contextId = $context->getId();
 		}
 
-		import('lib.pkp.controllers.grid.navigationMenus.form.NavigationMenuItemsForm');
+		import('controllers.grid.navigationMenus.form.NavigationMenuItemsForm');
 		$navigationMenuItemForm = new NavigationMenuItemsForm($contextId, $navigationMenuItemId, $navigationMenuIdParent);
 
 		$navigationMenuItemForm->readInputData();
 
 		if ($navigationMenuItemForm->validate()) {
-			$navigationMenuItemForm->execute($request);
+			$navigationMenuItemForm->execute();
 
 			if ($navigationMenuItemId) {
 				// Successful edit of an existing $navigationMenuItem.
@@ -200,7 +200,7 @@ class NavigationMenuItemsGridHandler extends GridHandler {
 		}
 
 		$navigationMenuItemForm = new NavigationMenuItemsForm($contextId, $navigationMenuItemId, $navigationMenuIdParent);
-		$navigationMenuItemForm->initData($args, $request);
+		$navigationMenuItemForm->initData();
 
 		return new JSONMessage(true, $navigationMenuItemForm->fetch($request));
 	}
@@ -220,10 +220,10 @@ class NavigationMenuItemsGridHandler extends GridHandler {
 			$contextId = $context->getId();
 		}
 
-		import('lib.pkp.controllers.grid.navigationMenus.form.NavigationMenuItemsForm');
+		import('controllers.grid.navigationMenus.form.NavigationMenuItemsForm');
 		$navigationMenuItemForm = new NavigationMenuItemsForm($contextId, $navigationMenuItemId, $navigationMenuIdParent);
 
-		$navigationMenuItemForm->initData($args, $request);
+		$navigationMenuItemForm->initData();
 
 		return new JSONMessage(true, $navigationMenuItemForm->fetch($request));
 	}
@@ -260,4 +260,4 @@ class NavigationMenuItemsGridHandler extends GridHandler {
 	}
 }
 
-?>
+

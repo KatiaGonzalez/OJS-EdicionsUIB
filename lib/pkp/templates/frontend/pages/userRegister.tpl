@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/userRegister.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * User registration form.
@@ -179,7 +179,7 @@
 				{translate key="user.register"}
 			</button>
 
-			{url|assign:"rolesProfileUrl" page="user" op="profile" path="roles"}
+			{capture assign="rolesProfileUrl"}{url page="user" op="profile" path="roles"}{/capture}
 			<a href="{url page="login" source=$rolesProfileUrl}" class="login">{translate key="user.login"}</a>
 		</div>
 	</form>

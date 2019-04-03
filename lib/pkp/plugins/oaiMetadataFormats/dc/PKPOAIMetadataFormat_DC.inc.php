@@ -3,8 +3,8 @@
 /**
  * @file plugins/oaiMetadataFormats/dc/PKPOAIMetadataFormat_DC.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PKPOAIMetadataFormat_DC
@@ -22,11 +22,11 @@ class PKPOAIMetadataFormat_DC extends OAIMetadataFormat {
 		$dcDescription = $dataObject->extractMetadata(new Dc11Schema());
 
 		$response = "<oai_dc:dc\n" .
-			"\txmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"\n" .
+			"\txmlns:oai_dc=\"https://www.openarchives.org/OAI/2.0/oai_dc/\"\n" .
 			"\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n" .
 			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" .
-			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\n" .
-			"\thttp://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n";
+			"\txsi:schemaLocation=\"https://www.openarchives.org/OAI/2.0/oai_dc/\n" .
+			"\thttps://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n";
 
 		foreach($dcDescription->getProperties() as $propertyName => $property) { /* @var $property MetadataProperty */
 			if ($dcDescription->hasStatement($propertyName)) {
@@ -79,4 +79,4 @@ class PKPOAIMetadataFormat_DC extends OAIMetadataFormat {
 	}
 }
 
-?>
+

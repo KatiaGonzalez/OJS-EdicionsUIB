@@ -4,8 +4,8 @@
 <!--
   * locale/es_ES/common.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings.
@@ -69,9 +69,9 @@
 	<message key="common.notice">Notificación</message>
 	<message key="common.captchaField.description">Por favor, introduzca las letras tal como aparecen en la imagen superior.</message>
 	<message key="common.captchaField">Validación</message>
-	<message key="common.ccLicense"><![CDATA[<br /><br /> <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by/3.0/"> <img alt="Licencia de Creative Commons" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png"/> </a> <br/> Este trabajo se distribuye bajo una <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Licencia de reconocimiento 3.0 de Creative Commons</a>.]]></message>
+	<message key="common.ccLicense"><![CDATA[<br /><br /> <a target="_blank" rel="license" href="https://creativecommons.org/licenses/by/3.0/"> <img alt="Licencia de Creative Commons" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png"/> </a> <br/> Este trabajo se distribuye bajo una <a rel="license" target="_blank" href="https://creativecommons.org/licenses/by/3.0/">Licencia de reconocimiento 3.0 de Creative Commons</a>.]]></message>
 	<message key="common.ccLicense.rt"><![CDATA[
-	<div class="rtBlock"><br /> <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank"><img alt="Licencia de Creative Commons" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png" /></a><br /> Este trabajo se distribuye bajo una <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Licencia de reconocimiento 3.0 de Creative Commons</a>.</div>
+	<div class="rtBlock"><br /> <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank"><img alt="Licencia de Creative Commons" style="border-width:0" src="//i.creativecommons.org/l/by/3.0/80x15.png" /></a><br /> Este trabajo se distribuye bajo una <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">Licencia de reconocimiento 3.0 de Creative Commons</a>.</div>
 	]]></message>
 	<message key="common.changesSaved">Sus cambios se han guardado.</message>
 	<message key="common.chooseOne">Seleccione uno</message>
@@ -175,7 +175,6 @@
 	<message key="common.pluginDisabled">El módulo "{$pluginName}" se ha desactivado.</message>
 	<message key="common.prefix">Prefijo</message>
 	<message key="common.prefixAndTitle.tip">Si el título del libro comienza con "Un/a" o "El/La/Los/Las" (o algo similar que no debiera considerarse en el orden alfabético) sitúa esta palabra en Prefijo.</message>
-	<message key="common.subtitle.tip">El subtítulo opcional del envío aparecerá tras los dos puntos (:) que siguen al título principal.</message>
 	<message key="common.preview">Previsualizar</message>
 	<message key="common.publisher">Editor</message>
 	<message key="common.quality">Calidad</message>

@@ -1,8 +1,8 @@
 {**
  * controllers/tab/settings/submissionStage/form/submissionStageForm.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Submission stage management form.
@@ -29,7 +29,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid" escape=false}
+	{capture assign=submissionChecklistGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 
 	{fbvFormArea id="notificationSettings"}
@@ -44,7 +44,7 @@
 		{/if}
 	{/fbvFormArea}
 
-	{url|assign:metadataGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.metadata.MetadataGridHandler" op="fetchGrid" escape=false}
+	{capture assign=metadataGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.metadata.MetadataGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="metadataGridContainer" url=$metadataGridUrl}
 
 	{if $enableContextPrivacyStatement}

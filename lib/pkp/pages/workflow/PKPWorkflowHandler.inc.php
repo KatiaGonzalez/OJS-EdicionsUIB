@@ -3,8 +3,8 @@
 /**
  * @file pages/workflow/PKPWorkflowHandler.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class WorkflowHandler
@@ -56,7 +56,7 @@ abstract class PKPWorkflowHandler extends Handler {
 	/**
 	 * @copydoc PKPHandler::initialize()
 	 */
-	function initialize($request, $args) {
+	function initialize($request) {
 		$router = $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
@@ -65,7 +65,7 @@ abstract class PKPWorkflowHandler extends Handler {
 		}
 
 		// Call parent method.
-		parent::initialize($request, $args);
+		parent::initialize($request);
 	}
 
 
@@ -199,6 +199,8 @@ abstract class PKPWorkflowHandler extends Handler {
 			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 			$lastReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $stageId);
 			$reviewRound = $reviewRoundDao->getById($reviewRoundId);
+		} else {
+			$lastReviewRound = null;
 		}
 
 		// If there is an editor assigned, retrieve stage decisions.
@@ -240,7 +242,7 @@ abstract class PKPWorkflowHandler extends Handler {
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$editorActions = array();
 		$lastRecommendation = $allRecommendations = null;
-		if (!empty($editorsStageAssignments) && (!$reviewRoundId || $reviewRoundId == $lastReviewRound->getId())) {
+		if (!empty($editorsStageAssignments) && (!$reviewRoundId || ($lastReviewRound && $reviewRoundId == $lastReviewRound->getId()))) {
 			import('classes.workflow.EditorDecisionActionsManager');
 			$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
 			$recommendationOptions = EditorDecisionActionsManager::getRecommendationOptions($stageId);
@@ -479,7 +481,7 @@ abstract class PKPWorkflowHandler extends Handler {
 	/**
 	 * Determine if a particular stage has a notification pending.  If so, return true.
 	 * This is used to set the CSS class of the submission progress bar.
-	 * @param $user PKPUser
+	 * @param $user User
 	 * @param $stageId integer
 	 * @param $contextId integer
 	 * @return boolean
@@ -520,11 +522,11 @@ abstract class PKPWorkflowHandler extends Handler {
 	abstract protected function getEditorAssignmentNotificationTypeByStageId($stageId);
 
 	/**
-	 * Checks whether or not the submission is ready to appear in catalog.
+	 * Checks whether or not the submission is ready to appear publicly.
 	 * @param $submission Submission
 	 * @return boolean
 	 */
 	abstract protected function isSubmissionReady($submission);
 }
 
-?>
+

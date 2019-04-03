@@ -4,8 +4,8 @@
 <!--
   * locale/es_ES/submission.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings (contrib)
@@ -480,7 +480,7 @@
 	<message key="editor.submission.roundStatus.sentToExternal">Enviado para revisión externa.</message>
 	<message key="editor.submission.roundStatus.accepted">Envío aceptado.</message>
 	<message key="editor.submission.roundStatus.declined">Envío rechazado.</message>
-	<message key="editor.submission.roundStatus.pendingReviewers">Esperando a los revisores/as.</message>
+	<message key="editor.submission.roundStatus.pendingReviewers">Esperando asignar a los  revisores/as.</message>
 	<message key="editor.submission.roundStatus.pendingReviews">Esperando las respuestas de los revisores/as.</message>
 	<message key="editor.submission.roundStatus.reviewsReady">Los revisores/as nuevos están listos.</message>
 	<message key="editor.submission.roundStatus.reviewsCompleted">Revisiones completadas.</message>
@@ -594,12 +594,12 @@
 	<message key="submission.license.cc.by-nd4">CC Reconocimiento-SinObrasDerivadas 4.0</message>
 	<message key="submission.license.cc.by4">CC Reconocimiento 4.0</message>
 	<message key="submission.license.cc.by-sa4">CC CC Reconocimiento-SinObrasDerivadas 4.0</message>
-	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Reconocimiento-NoComercial-SinObrasDerivadas 4.0</a>.]]></message>
-	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Reconocimiento-NoComercial 4.0</a>.]]></message>
-	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0</a>.]]></message>
-	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Reconocimiento-SinObrasDerivadas 4.0</a>.]]></message>
-	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Reconocimiento 4.0</a>.]]></message>
-	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Reconocimiento-CompartirIgual 4.0</a>.]]></message>
+	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Reconocimiento-NoComercial-SinObrasDerivadas 4.0</a>.]]></message>
+	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Reconocimiento-NoComercial 4.0</a>.]]></message>
+	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0</a>.]]></message>
+	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Reconocimiento-SinObrasDerivadas 4.0</a>.]]></message>
+	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Reconocimiento 4.0</a>.]]></message>
+	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Esta obra está bajo licencia internacional <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Reconocimiento-CompartirIgual 4.0</a>.]]></message>
 	<message key="submission.queries.submission">Discusiones prerrevisión</message>
 	<message key="submission.queries.review">Revisa las discusiones</message>
 	<message key="submission.queries.editorial">Discusiones de corrección</message>
@@ -706,4 +706,26 @@
 	<message key="submission.list.currentStage">Actualmente en la fase {$stage}.</message>
 	<message key="submission.list.dualWorkflowLinks"><![CDATA[Se le han asignado múltiples roles para este envío. ¿Quiere acceder al <a href="{$urlAuthorWorkflow}">flujo de trabajo del autor/a</a>  o al <a href="{$urlEditorialWorkflow}">flujo de trabajo editorial</a>?]]></message>
 	<message key="submission.list.reviewerWorkflowLink"><![CDATA[Se le ha asignado un rol editorial para este envío. ¿Quiere acceder al <a href="{$urlEditorialWorkflow}">flujo de trabajo editorial</a>?]]></message>
+
+	<message key="grid.category.categories">Categorías</message>
+	<message key="grid.category.add">Añadir categoría</message>
+	<message key="grid.category.edit">Editar categoría</message>
+	<message key="grid.category.name">Nombre</message>
+	<message key="grid.category.path">Ruta</message>
+	<message key="grid.category.urlWillBe">La URL de la categoría es {$sampleUrl}</message>
+	<message key="grid.category.pathAlphaNumeric">La ruta de la categoría estará compuesta únicamente por letras y números.</message>
+	<message key="grid.category.pathExists">La ruta de la categoría ya existe. Introduzca una ruta nueva.</message>
+	<message key="grid.category.description">Descripción</message>
+	<message key="grid.category.parentCategory">Categoría superior</message>
+	<message key="grid.category.removeText">¿Seguro que deseas borrar esta categoría?</message>
+	<message key="grid.category.nameRequired">Introducir el nombre de una categoría.</message>
+	<message key="grid.category.categoryDetails">Detalles de categoría</message>
+	<message key="catalog.sortBy.titleAsc">Título (A-Z)</message>
+	<message key="catalog.sortBy.titleDesc">Título (Z-A)</message>
+	<message key="catalog.sortBy.datePublishedAsc">Fecha de publicación (más antiguos primero)</message>
+	<message key="catalog.sortBy.datePublishedDesc">Fecha de publicación (más nuevos primero)</message>
+	<message key="submission.submit.placement.categories">Categorías</message>
+	<message key="submission.currentCoverImage">Imagen actual</message>
+	<message key="catalog.browseTitles">Explorar {$numTitles} títulos</message>
+	<message key="catalog.noTitlesSection">No se ha publicado ningún título aún para esta sección.</message>
 </locale>

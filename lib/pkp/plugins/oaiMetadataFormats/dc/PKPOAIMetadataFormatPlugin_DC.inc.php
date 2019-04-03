@@ -3,8 +3,8 @@
 /**
  * @file plugins/oaiMetadataFormats/dc/PKPOAIMetadataFormatPlugin_DC.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PKPOAIMetadataFormatPlugin_DC
@@ -42,12 +42,12 @@ class PKPOAIMetadataFormatPlugin_DC extends OAIMetadataFormatPlugin {
 	}
 
 	static function getSchema() {
-		return 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd';
+		return 'https://www.openarchives.org/OAI/2.0/oai_dc.xsd';
 	}
 
 	static function getNamespace() {
-		return 'http://www.openarchives.org/OAI/2.0/oai_dc/';
+		return 'https://www.openarchives.org/OAI/2.0/oai_dc/';
 	}
 }
 
-?>
+

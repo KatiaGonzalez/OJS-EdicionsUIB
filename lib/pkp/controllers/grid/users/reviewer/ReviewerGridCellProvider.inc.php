@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/reviewer/ReviewerGridCellProvider.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerGridCellProvider
@@ -69,8 +69,8 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'name':
-				$isAuthorBlind = in_array($element->getReviewMethod(), array(SUBMISSION_REVIEW_METHOD_BLIND, SUBMISSION_REVIEW_METHOD_DOUBLEBLIND));
-				if ($this->_isCurrentUserAssignedAuthor && $isAuthorBlind) {
+				$isReviewBlind = in_array($element->getReviewMethod(), array(SUBMISSION_REVIEW_METHOD_BLIND, SUBMISSION_REVIEW_METHOD_DOUBLEBLIND));
+				if ($this->_isCurrentUserAssignedAuthor && $isReviewBlind) {
 					return array('label' => __('editor.review.anonymousReviewer'));
 				}
 				return array('label' => $element->getReviewerFullName());
@@ -163,7 +163,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			case REVIEW_ASSIGNMENT_STATUS_RESPONSE_OVERDUE:
 				return '<span class="state overdue">'.__('common.overdue').'</span><span class="details">'.__('editor.review.responseDue', array('date' => substr($reviewAssignment->getDateResponseDue(),0,10))).'</span>';
 			case REVIEW_ASSIGNMENT_STATUS_DECLINED:
-				return '<span class="state declined">'.__('common.declined').'</span>';
+				return '<span class="state declined" title="' . __('editor.review.requestDeclined.tooltip') . '">'.__('editor.review.requestDeclined').'</span>';
 			case REVIEW_ASSIGNMENT_STATUS_RECEIVED:
 				return  $this->_getStatusWithRecommendation('editor.review.reviewSubmitted', $reviewAssignment);
 			default:
@@ -190,4 +190,4 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	}
 }
 
-?>
+

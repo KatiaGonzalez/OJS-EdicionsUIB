@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/reviewer/form/EditReviewForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class EditReviewForm
@@ -58,10 +58,9 @@ class EditReviewForm extends Form {
 
 	/**
 	 * Fetch the Edit Review Form form
-	 * @param $request PKPRequest
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$context = $request->getContext();
@@ -87,7 +86,7 @@ class EditReviewForm extends Form {
 			'reviewMethod' => $this->_reviewAssignment->getReviewMethod(),
 			'reviewMethods' => $reviewAssignmentDao->getReviewMethodsTranslationKeys(),
 		));
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -107,7 +106,6 @@ class EditReviewForm extends Form {
 
 	/**
 	 * Save review assignment
-	 * @param $request PKPRequest
 	 */
 	function execute() {
 		$request = Application::getRequest();
@@ -132,24 +130,14 @@ class EditReviewForm extends Form {
 		$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($this->_reviewRound->getId(), $this->_reviewAssignment->getReviewerId(), $this->_reviewRound->getRound(), $this->_reviewRound->getStageId());
 
 		// Send notification to reviewer if details have changed.
-		if ($reviewAssignment->getDateDue() != $this->getData('reviewDueDate') || $reviewAssignment->getDateResponseDue() != $this->getData('responseDueDate') || $reviewAssignment->getReviewMethod() != $this->getData('reviewMethod')){
+		if (strtotime($reviewAssignment->getDateDue()) != strtotime($this->getData('reviewDueDate')) || strtotime($reviewAssignment->getDateResponseDue()) != strtotime($this->getData('responseDueDate')) || $reviewAssignment->getReviewMethod() != $this->getData('reviewMethod')){
 			$notificationManager = new NotificationManager();
 			$request = Application::getRequest();
 			$context = $request->getContext();
-			$userIds[] = $reviewAssignment->getReviewerId();
-
-			// Also notify the author, if review assignment already accepted
-			if ($reviewAssignment->getDateConfirmed()){
-				$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-				$submitterAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($reviewAssignment->getSubmissionId(), ROLE_ID_AUTHOR);
-				while ($assignment = $submitterAssignments->next()) {
-					$userIds[] = $assignment->getUserId();
-				}
-			}
 
 			$notificationManager->createNotification(
 				$request,
-				$userIds,
+				$reviewAssignment->getReviewerId(),
 				NOTIFICATION_TYPE_REVIEW_ASSIGNMENT_UPDATED,
 				$context->getId(),
 				ASSOC_TYPE_REVIEW_ASSIGNMENT,
@@ -176,4 +164,4 @@ class EditReviewForm extends Form {
 	}
 }
 
-?>
+

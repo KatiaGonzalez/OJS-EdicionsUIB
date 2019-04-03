@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/customBlockManager/CustomBlockManagerPlugin.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package plugins.generic.customBlockManager
@@ -73,42 +73,6 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 			}
 			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Register as a block plugin, even though this is a generic plugin.
-	 * This will allow the plugin to behave as a block plugin, i.e. to
-	 * have layout tasks performed on it.
-	 * @param $hookName string The name of the hook being invoked
-	 * @param $args array The parameters to the invoked hook
-	 */
-	function callbackLoadCategory($hookName, $args) {
-		$category =& $args[0];
-		$plugins =& $args[1];
-		$request =& $this->getRequest();
-
-		switch ($category) {
-			case 'blocks': // The system is registering block plugins
-				$this->import('CustomBlockPlugin');
-
-				// Ensure that there is a context (journal or press)
-				$context = $request->getContext();
-				$contextId = $context ? $context->getId() : 0;
-
-				// Load the custom blocks we have created
-				$blocks = $this->getSetting($contextId, 'blocks');
-				if (!is_array($blocks)) break;
-
-				// Loop through each custom block and register it
-				$i=0;
-				foreach ($blocks as $block) {
-					// Add the plugin to the list of registered plugins
-					$plugins[$blockPlugin->getSeq()][$blockPlugin->getPluginPath() . $i] = new CustomBlockPlugin($block, $this);
-					$i++;
-				}
-				break;
 		}
 		return false;
 	}
@@ -183,5 +147,3 @@ class CustomBlockManagerPlugin extends GenericPlugin {
 		return !Application::getRequest()->getContext();
 	}
 }
-
-?>

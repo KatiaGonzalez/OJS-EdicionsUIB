@@ -1,8 +1,8 @@
 {**
  * templates/reviewer/review/step1.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show the review step 1 page
@@ -37,7 +37,7 @@
 	{/fbvFormSection}
 	
 	{if !$restrictReviewerFileAccess}
-	{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$reviewAssignment->getStageId() reviewRoundId=$reviewRoundId reviewAssignmentId=$reviewAssignment->getId() escape=false}
+	{capture assign=reviewFilesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$reviewAssignment->getStageId() reviewRoundId=$reviewRoundId reviewAssignmentId=$reviewAssignment->getId() escape=false}{/capture}
 	{load_url_in_div id="reviewFilesStep1" url=$reviewFilesGridUrl}
 	{/if}
 
@@ -82,7 +82,7 @@
 		{/fbvFormSection}
 	{/if}
 
-	{if !$reviewAssignment->getDeclined() && !$reviewAssignment->getDateConfirmed() && $currentContext->getSetting('privacyStatement')}
+	{if !$reviewAssignment->getDateConfirmed() && $currentContext->getSetting('privacyStatement')}
 		{fbvFormSection list=true}
 			{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
 			{capture assign="privacyLabel"}{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}{/capture}
@@ -90,7 +90,7 @@
 		{/fbvFormSection}
 	{/if}
 
-	{if $reviewAssignment->getDateConfirmed() && !$reviewAssignment->getDeclined()}
+	{if $reviewAssignment->getDateConfirmed()}
 		{fbvFormButtons hideCancel=true submitText="common.saveAndContinue" submitDisabled=$reviewIsComplete}
 	{elseif !$reviewAssignment->getDateConfirmed()}
 		{fbvFormButtons submitText="reviewer.submission.acceptReview" cancelText="reviewer.submission.declineReview" cancelAction=$declineReviewAction submitDisabled=$reviewIsComplete}

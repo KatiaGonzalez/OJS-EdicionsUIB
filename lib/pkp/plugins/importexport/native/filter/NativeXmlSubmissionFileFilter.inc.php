@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlSubmissionFileFilter.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlSubmissionFileFilter
@@ -236,7 +236,7 @@ class NativeXmlSubmissionFileFilter extends NativeImportFilter {
 
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
-		$fileManager->deleteFile($filename);
+		$fileManager->deleteByPath($filename);
 		return $submissionFile;
 	}
 
@@ -304,7 +304,7 @@ class NativeXmlSubmissionFileFilter extends NativeImportFilter {
 				if ($errorFlag) {
 					$deployment->addError(ASSOC_TYPE_SUBMISSION, $submission->getId(), __('plugins.importexport.common.error.temporaryFileFailed', array('dest' => $temporaryFilename, 'source' => $filesrc)));
 					$fileManager = new FileManager();
-					$fileManager->deleteFile($temporaryFilename);
+					$fileManager->deleteByPath($temporaryFilename);
 					$temporaryFilename = '';
 				}
 				return $temporaryFilename;
@@ -328,7 +328,7 @@ class NativeXmlSubmissionFileFilter extends NativeImportFilter {
 					}
 					if ($errorFlag) {
 						$fileManager = new FileManager();
-						$fileManager->deleteFile($temporaryFilename);
+						$fileManager->deleteByPath($temporaryFilename);
 						$temporaryFilename = '';
 					}
 				}
@@ -374,4 +374,4 @@ class NativeXmlSubmissionFileFilter extends NativeImportFilter {
 	}
 }
 
-?>
+

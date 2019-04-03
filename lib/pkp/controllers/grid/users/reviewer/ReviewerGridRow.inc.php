@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/reviewer/ReviewerGridRow.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerGridRow
@@ -49,8 +49,8 @@ class ReviewerGridRow extends GridRow {
 
 		// Authors can't perform any actions on blind reviews
 		$reviewAssignment = $this->getData();
-		$isAuthorBlind = in_array($reviewAssignment->getReviewMethod(), array(SUBMISSION_REVIEW_METHOD_BLIND, SUBMISSION_REVIEW_METHOD_DOUBLEBLIND));
-		if ($this->_isCurrentUserAssignedAuthor && $isAuthorBlind) {
+		$isReviewBlind = in_array($reviewAssignment->getReviewMethod(), array(SUBMISSION_REVIEW_METHOD_BLIND, SUBMISSION_REVIEW_METHOD_DOUBLEBLIND));
+		if ($this->_isCurrentUserAssignedAuthor && $isReviewBlind) {
 			return;
 		}
 
@@ -166,7 +166,7 @@ class ReviewerGridRow extends GridRow {
 			$canCurrentUserGossip = ServicesContainer::instance()
 				->get('user')
 				->canCurrentUserGossip($reviewAssignment->getReviewerId());
-			if ($canCurrentUserGossip && !$isAuthorBlind) {
+			if ($canCurrentUserGossip) {
 				$this->addAction(
 					new LinkAction(
 						'gossip',
@@ -184,4 +184,4 @@ class ReviewerGridRow extends GridRow {
 	}
 }
 
-?>
+

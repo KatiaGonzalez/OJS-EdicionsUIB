@@ -4,8 +4,8 @@
 <!--
   * locale/ca_ES/submission.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Catalan_(ca_ES)
   * Localization strings.
@@ -235,7 +235,6 @@
 	<message key="submission.layout.confirmDeleteSupplementaryFile">Esteu segur/a que voleu suprimir aquest fitxer addicional de manera permanent?</message>
 	<message key="submission.layout.deleteGalleyStylesheet">Suprimeix aquestes galerades.</message>
 	<message key="submission.layout.editGalley">Edita les galerades de maquetació</message>
-	<message key="submission.layout.galleyFileData">Informació del fitxer de galerades</message>
 	<message key="submission.layout.galleyFormat">Format de les galerades</message>
 	<message key="submission.layout.galleyHTMLData">Fitxers HTML de les galerades</message>
 	<message key="submission.layout.galleyImages">Imatges</message>
@@ -502,6 +501,21 @@
 	<message key="notification.type.editorDecisionSendToProduction">Ha començat el procés de producció.</message>
 	<message key="notification.type.editorAssignmentProduction">S'ha d'assignar un editor/a abans de començar el procés de producció. Afegiu un editor/a de producció amb l'enllaç de participants anterior.</message>
 	<message key="notification.type.editorAssignmentEditing">S'ha d'assignar un editor/a de producció abans de començar el procés editorial. Afegiu un editor/a de producció amb l'enllaç de participants anterior.</message>
-	<message key="submission.copyrightStatement">Copyright (c) {$copyrightYear} {$copyrightHolder}</message>
-	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licencia Creative Commons" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><p>Aquest treball es troba baix una llicència <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Reconeixement -NoComercial- SenseObresDerivades 4.0</a>.</p>]]></message>
+
+	<message key="grid.category.categories">Categories</message>
+	<message key="grid.category.add">Afegeix categoria</message>
+	<message key="grid.category.edit">Edita categoria</message>
+	<message key="grid.category.name">Nom</message>
+	<message key="grid.category.path">Ruta</message>
+	<message key="grid.category.urlWillBe">La categoria de l'URL serà {$sampleUrl}.</message>
+	<message key="grid.category.pathAlphaNumeric">La ruta de la categoria només pot estar formada per números i lletres.</message>
+	<message key="grid.category.pathExists">Ja existeix una ruta per a la categoria. Introduïu una ruta única.</message>
+	<message key="grid.category.description">Descripció</message>
+	<message key="grid.category.parentCategory">Categoria principal</message>
+	<message key="grid.category.removeText">Esteu segur/a que voleu eliminar aquesta categoria?</message>
+	<message key="grid.category.nameRequired">Introduïu un nom vàlid per a la categoria.</message>
+	<message key="grid.category.categoryDetails">Detalls de la categoria</message>
+	<message key="submission.submit.placement.categories">Categories</message>
+	<message key="submission.currentCoverImage">Imatge actual</message>
+	<message key="catalog.browseTitles">Navega pels títols {$numTitles}</message>
 </locale>

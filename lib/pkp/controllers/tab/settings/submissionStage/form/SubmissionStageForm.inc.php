@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/settings/submissionStage/form/SubmissionStageForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionStageForm
@@ -59,9 +59,9 @@ class SubmissionStageForm extends ContextSettingsForm {
 	}
 
 	/**
-	 * @copydoc Form::fetch()
+	 * @copydoc ContextSettingsForm::fetch()
 	 */
-	function fetch($request, $params = null) {
+	function fetch($request, $template = null, $display = false, $params = null) {
 		$templateMgr = TemplateManager::getManager($request);
 
 		import('lib.pkp.classes.mail.MailTemplate');
@@ -71,8 +71,8 @@ class SubmissionStageForm extends ContextSettingsForm {
 			'enableContextPrivacyStatement' => !Config::getVar('general', 'sitewide_privacy_statement'),
 		));
 
-		return parent::fetch($request, $params);
+		return parent::fetch($request, $template, $display, $params);
 	}
 }
 
-?>
+

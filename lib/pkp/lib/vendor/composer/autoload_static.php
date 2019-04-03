@@ -4,15 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit054355ae6616808e5821a786b9632197
+class ComposerStaticInit6ad280635761c6b52dfbaffc1f9adda1
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
-        '3b5531f8bb4716e1b6014ad7e734f545' => __DIR__ . '/..' . '/illuminate/support/Illuminate/Support/helpers.php',
+        '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
-        'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'f084d01b0a599f67676cffef638aa95b' => __DIR__ . '/..' . '/smarty/smarty/libs/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,22 +21,36 @@ class ComposerStaticInit054355ae6616808e5821a786b9632197
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
-            'Symfony\\Component\\Process\\' => 26,
+            'Stringy\\' => 8,
             'Slim\\' => 5,
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
+        'M' => 
+        array (
+            'Michelf\\' => 8,
         ),
         'I' => 
         array (
             'Interop\\Container\\' => 18,
+            'Illuminate\\Support\\' => 19,
+            'Illuminate\\Database\\' => 20,
+            'Illuminate\\Contracts\\' => 21,
+            'Illuminate\\Container\\' => 21,
         ),
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
             'FastRoute\\' => 10,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 26,
         ),
     );
 
@@ -48,13 +63,17 @@ class ComposerStaticInit054355ae6616808e5821a786b9632197
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
-        'Symfony\\Component\\Process\\' => 
+        'Stringy\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/process',
+            0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
         ),
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -64,9 +83,33 @@ class ComposerStaticInit054355ae6616808e5821a786b9632197
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'Michelf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/michelf/php-markdown/Michelf',
+        ),
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
+        'Illuminate\\Support\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/support',
+        ),
+        'Illuminate\\Database\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/database',
+        ),
+        'Illuminate\\Contracts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/contracts',
+        ),
+        'Illuminate\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/container',
         ),
         'Firebase\\JWT\\' => 
         array (
@@ -75,6 +118,10 @@ class ComposerStaticInit054355ae6616808e5821a786b9632197
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
     );
 
@@ -90,37 +137,11 @@ class ComposerStaticInit054355ae6616808e5821a786b9632197
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
         ),
-        'M' => 
-        array (
-            'Michelf' => 
-            array (
-                0 => __DIR__ . '/..' . '/michelf/php-markdown',
-            ),
-        ),
         'L' => 
         array (
             'Less' => 
             array (
                 0 => __DIR__ . '/..' . '/oyejorge/less.php/lib',
-            ),
-        ),
-        'I' => 
-        array (
-            'Illuminate\\Support' => 
-            array (
-                0 => __DIR__ . '/..' . '/illuminate/support',
-            ),
-            'Illuminate\\Events' => 
-            array (
-                0 => __DIR__ . '/..' . '/illuminate/events',
-            ),
-            'Illuminate\\Database' => 
-            array (
-                0 => __DIR__ . '/..' . '/illuminate/database',
-            ),
-            'Illuminate\\Container' => 
-            array (
-                0 => __DIR__ . '/..' . '/illuminate/container',
             ),
         ),
         'H' => 
@@ -130,45 +151,20 @@ class ComposerStaticInit054355ae6616808e5821a786b9632197
                 0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
             ),
         ),
-        'C' => 
-        array (
-            'ComponentInstaller' => 
-            array (
-                0 => __DIR__ . '/..' . '/robloach/component-installer/src',
-            ),
-        ),
-        'A' => 
-        array (
-            'Assetic' => 
-            array (
-                0 => __DIR__ . '/..' . '/kriswallsmith/assetic/src',
-            ),
-        ),
     );
 
     public static $classMap = array (
-        'Config_File' => __DIR__ . '/..' . '/smarty/smarty/libs/Config_File.class.php',
-        'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
-        'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
-        'PHPMailerOAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauth.php',
-        'PHPMailerOAuthGoogle' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
-        'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
-        'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
-        'Smarty' => __DIR__ . '/..' . '/smarty/smarty/libs/Smarty.class.php',
-        'Smarty_Compiler' => __DIR__ . '/..' . '/smarty/smarty/libs/Smarty_Compiler.class.php',
         'lessc' => __DIR__ . '/..' . '/oyejorge/less.php/lessc.inc.php',
-        'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
-        'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit054355ae6616808e5821a786b9632197::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit054355ae6616808e5821a786b9632197::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit054355ae6616808e5821a786b9632197::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit054355ae6616808e5821a786b9632197::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit054355ae6616808e5821a786b9632197::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6ad280635761c6b52dfbaffc1f9adda1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6ad280635761c6b52dfbaffc1f9adda1::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit6ad280635761c6b52dfbaffc1f9adda1::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6ad280635761c6b52dfbaffc1f9adda1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6ad280635761c6b52dfbaffc1f9adda1::$classMap;
 
         }, null, ClassLoader::class);
     }

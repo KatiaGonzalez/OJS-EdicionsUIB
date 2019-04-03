@@ -3,8 +3,8 @@
 /**
  * @file classes/services/PKPNavigationMenuService.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PKPNavigationMenuService
@@ -45,7 +45,7 @@ class PKPNavigationMenuService {
 				'conditionalWarning' => __('manager.navigationMenus.editorialTeam.conditionalWarning'),
 			),
 			NMI_TYPE_SUBMISSIONS => array(
-				'title' => __('navigation.submissions'),
+				'title' => __('about.submissions'),
 				'description' => __('manager.navigationMenus.submissions.description'),
 			),
 			NMI_TYPE_ANNOUNCEMENTS => array(
@@ -105,6 +105,25 @@ class PKPNavigationMenuService {
 	}
 
 	/**
+	 * Return all custom edit navigationMenuItemTypes Templates.
+	 * @return array
+	 */
+	public function getMenuItemCustomEditTemplates() {
+		$templates = array(
+			NMI_TYPE_CUSTOM => array(
+				'template' => 'core:controllers/grid/navigationMenus/customNMIType.tpl',
+			),
+			NMI_TYPE_REMOTE_URL => array(
+				'template' => 'core:controllers/grid/navigationMenus/remoteUrlNMIType.tpl',
+			),
+		);
+
+		\HookRegistry::call('NavigationMenus::itemCustomTemplates', array(&$templates));
+
+		return $templates;
+	}
+
+	/**
 	 * Callback for display menu item functionallity
 	 */
 	function getDisplayStatus(&$navigationMenuItem, &$navigationMenu) {
@@ -147,7 +166,7 @@ class PKPNavigationMenuService {
 				$navigationMenuItem->setIsDisplayed($isUserLoggedIn);
 				break;
 			case NMI_TYPE_ADMINISTRATION:
-				$navigationMenuItem->setIsDisplayed($isUserLoggedIn && ($currentUser->hasRole(array(ROLE_ID_SITE_ADMIN), $contextId) || $currentUser->hasRole(array(ROLE_ID_SITE_ADMIN), CONTEXT_SITE)));
+				$navigationMenuItem->setIsDisplayed($isUserLoggedIn && $currentUser->hasRole(array(ROLE_ID_SITE_ADMIN), CONTEXT_SITE));
 				break;
 			case NMI_TYPE_SEARCH:
 				$navigationMenuItem->setIsDisplayed($context);
@@ -158,7 +177,6 @@ class PKPNavigationMenuService {
 		}
 
 		if ($navigationMenuItem->getIsDisplayed()) {
-
 			// Adjust some titles
 			switch ($menuItemType) {
 				case NMI_TYPE_USER_LOGOUT:
@@ -173,7 +191,6 @@ class PKPNavigationMenuService {
 						$displayTitle = $templateMgr->fetch('frontend/components/navigationMenus/dashboardMenuItem.tpl');
 						$navigationMenuItem->setTitle($displayTitle, \AppLocale::getLocale());
 					}
-
 					break;
 			}
 
@@ -394,8 +411,6 @@ class PKPNavigationMenuService {
 		$cache->setEntireCache($json);
 	}
 
-
-
 	/**
 	 * Get a tree of NavigationMenuItems assigned to this menu
 	 * @param $navigationMenu \NavigationMenu
@@ -484,6 +499,8 @@ class PKPNavigationMenuService {
 	 * @param $navigationMenu \NavigationMenu
 	 */
 	public function transformNavMenuItemTitle($templateMgr, &$navigationMenuItem) {
+		$this->setNMITitleLocalized($navigationMenuItem);
+
 		$title = $navigationMenuItem->getLocalizedTitle();
 		$prefix = '{$';
 		$postfix = '}';
@@ -494,7 +511,7 @@ class PKPNavigationMenuService {
 		if ($prefixPos !== false && $postfixPos !== false && ($postfixPos - $prefixPos) > 0){
 			$titleRepl = substr($title, $prefixPos + strlen($prefix), $postfixPos - $prefixPos - strlen($prefix));
 
-			$templateReplaceTitle = $templateMgr->get_template_vars($titleRepl);
+			$templateReplaceTitle = $templateMgr->getTemplateVars($titleRepl);
 			if ($templateReplaceTitle) {
 				$navigationMenuItem->setTitle($templateReplaceTitle, \AppLocale::getLocale());
 			}
@@ -547,6 +564,47 @@ class PKPNavigationMenuService {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Sets the title of a navigation menu item, depending on its title or locale-key
+	 * @param $nmi \NavigationMenuItem The NMI to set its title
+	 */
+	public function setNMITitleLocalized($nmi) {
+		if ($nmi) {
+			\AppLocale::requireComponents(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_USER);
+			if ($localisedTitle = $nmi->getLocalizedTitle()) {
+				$nmi->setTitle($localisedTitle, \AppLocale::getLocale());
+			} else {
+				$nmi->setTitle(__($nmi->getTitleLocaleKey()), \AppLocale::getLocale());
+			}
+		}
+	}
+
+	/**
+	 * Sets the title of a navigation menu item, depending on its title or locale-key
+	 * @param $nmi \NavigationMenuItem The NMI to set its title
+	 */
+	public function setAllNMILocalisedTitles($nmi) {
+		if ($nmi) {
+			$supportedFormLocales = \AppLocale::getSupportedFormLocales();
+
+			foreach ($supportedFormLocales as $supportedFormLocale => $supportedFormLocaleValue) {
+				\AppLocale::requireComponents(
+					LOCALE_COMPONENT_PKP_COMMON,
+					LOCALE_COMPONENT_PKP_MANAGER,
+					LOCALE_COMPONENT_APP_COMMON,
+					LOCALE_COMPONENT_PKP_USER,
+					$supportedFormLocale
+				);
+
+				if ($localisedTitle = $nmi->getTitle($supportedFormLocale)) {
+					$nmi->setTitle($localisedTitle, $supportedFormLocale);
+				} else {
+					$nmi->setTitle(__($nmi->getTitleLocaleKey(), array(), $supportedFormLocale), $supportedFormLocale);
+				}
+			}
+		}
 	}
 
 	/**

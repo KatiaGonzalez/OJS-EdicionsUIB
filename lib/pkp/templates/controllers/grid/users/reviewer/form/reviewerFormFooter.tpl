@@ -1,8 +1,8 @@
 {**
  * templates/controllers/grid/user/reviewer/form/reviewerFormFooter.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * The non-searching part of the add reviewer form
@@ -39,7 +39,7 @@
 
 	{capture assign="extraContent"}
 		<!-- Available review files -->
-		{url|assign:limitReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.LimitReviewFilesGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
+		{capture assign=limitReviewFilesGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.LimitReviewFilesGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId reviewRoundId=$reviewRoundId escape=false}{/capture}
 		{load_url_in_div id="limitReviewFilesGrid" url=$limitReviewFilesGridUrl}
 	{/capture}
 	<div id="filesAccordian" class="section">

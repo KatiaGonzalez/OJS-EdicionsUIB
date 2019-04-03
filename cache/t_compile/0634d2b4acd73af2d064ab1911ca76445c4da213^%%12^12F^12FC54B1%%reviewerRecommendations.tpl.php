@@ -1,9 +1,0 @@
-<?php /* Smarty version 2.6.25-dev, created on 2019-02-28 10:36:12
-         compiled from reviewer/review/reviewerRecommendations.tpl */ ?>
-<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('block', 'fbvFormSection', 'reviewer/review/reviewerRecommendations.tpl', 11, false),array('modifier', 'default', 'reviewer/review/reviewerRecommendations.tpl', 11, false),array('function', 'fbvElement', 'reviewer/review/reviewerRecommendations.tpl', 12, false),)), $this); ?>
-
-<?php $this->_tag_stack[] = array('fbvFormSection', array('label' => "reviewer.article.recommendation",'description' => ((is_array($_tmp=@$this->_tpl_vars['description'])) ? $this->_run_mod_handler('default', true, $_tmp, "reviewer.article.selectRecommendation") : smarty_modifier_default($_tmp, "reviewer.article.selectRecommendation")))); $_block_repeat=true;$this->_plugins['block']['fbvFormSection'][0][0]->smartyFBVFormSection($this->_tag_stack[count($this->_tag_stack)-1][1], null, $this, $_block_repeat);while ($_block_repeat) { ob_start(); ?>
-	<?php echo $this->_plugins['function']['fbvElement'][0][0]->smartyFBVElement(array('type' => 'select','id' => 'recommendation','from' => $this->_tpl_vars['reviewerRecommendationOptions'],'selected' => $this->_tpl_vars['reviewAssignment']->getRecommendation(),'size' => $this->_tpl_vars['fbvStyles']['size']['MEDIUM'],'required' => ((is_array($_tmp=@$this->_tpl_vars['required'])) ? $this->_run_mod_handler('default', true, $_tmp, true) : smarty_modifier_default($_tmp, true)),'disabled' => $this->_tpl_vars['readOnly']), $this);?>
-
-<?php $_block_content = ob_get_contents(); ob_end_clean(); $_block_repeat=false;echo $this->_plugins['block']['fbvFormSection'][0][0]->smartyFBVFormSection($this->_tag_stack[count($this->_tag_stack)-1][1], $_block_content, $this, $_block_repeat); }  array_pop($this->_tag_stack); ?>

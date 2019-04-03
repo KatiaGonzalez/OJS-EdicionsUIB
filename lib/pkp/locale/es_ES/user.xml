@@ -4,8 +4,8 @@
 <!--
   * locale/es_ES/user.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Credits: https://pkp.sfu.ca/wiki/index.php?title=OMP:_Spanish_(es_ES)
   * Localization strings.
@@ -69,7 +69,6 @@
 	<message key="user.phone">Teléfono</message>
 	<message key="user.profile.changePasswordInstructions">Introduzca tu contraseña actual y la nueva para cambiar la contraseña de tu cuenta.</message>
 	<message key="user.profile.editProfile">Editar perfil</message>
-	<message key="user.profile.form.ageRequired">Has de ser mayor de 16 anys</message>
 	<message key="user.profile.form.countryRequired">Introduzca un país.</message>
 	<message key="user.profile.form.emailRequired">Es necesaria una dirección de correo-e válida.</message>
 	<message key="user.profile.form.affiliationRequired">Se requiere afiliación.</message>
@@ -96,9 +95,7 @@
 	<message key="user.login.registerNewAccount">¿No es usuario/a? Regístrese en el sitio</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[Por razones de seguridad, el sistema envía un correo electrónico con la nueva contraseña a los usuarios/as registrados, en vez de recordar la contraseña actual.<br /><br />Introduzca su dirección de correo electrónico a continuación para restablecer la contraseña. Se le enviará una confirmación a su dirección de correo electrónico.]]></message>
 
-	<message key="user.register.form.ageConfirmation">Declaro tener más de 16 anys</message>
 	<message key="user.register.form.emailExists">La dirección de correo electrónico seleccionada ya está siendo utilizada por otro usuario.</message>
-	<message key="user.register.form.passwordBadFormat"> La contraseña debe contener al menos un dígito y una letra.</message>
 	<message key="user.register.form.passwordsDoNotMatch">Las contraseñas no coinciden.</message>
 	<message key="user.register.form.emailsDoNotMatch">Los campos de correo electrónico no coinciden.</message>
 	<message key="user.register.form.usernameExists">El nombre de usuario seleccionado ya está siendo utilizado por otro usuario.</message>
@@ -140,7 +137,7 @@
 	<message key="user.register.form.userGroupRequired">Debe seleccionar un rol como mínimo.</message>
 	<message key="user.register.registrationCompleted"><![CDATA[Se ha registrado correctamente. <a href="{$profileUrl}">Haga clic aquí</a> para completar su perfil de usuario.]]></message>
 	<message key="user.orcid">Identificador ORCID</message>
-	<message key="user.orcid.orcidInvalid">El ORCID que ha especificado no es válido. Incluya la URL completa (p. ej.: "http://orcid.org/0000-0002-1825-0097").</message>
+	<message key="user.orcid.orcidInvalid">El ORCID que ha especificado no es válido. Incluya la URL completa (p. ej.: "https://orcid.org/0000-0002-1825-0097").</message>
 	<message key="user.profile.identity">Identidad</message>
 	<message key="user.profile.contact">Contacto</message>
 	<message key="user.profile.public">Público</message>

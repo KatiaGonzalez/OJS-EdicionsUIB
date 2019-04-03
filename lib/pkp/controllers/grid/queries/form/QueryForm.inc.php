@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/queries/form/QueryForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class QueryForm
@@ -78,7 +78,9 @@ class QueryForm extends Form {
 		$this->setQuery($query);
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'users', 'required', 'stageParticipants.notify.warning'));
+		$this->addCheck(new FormValidatorCustom($this, 'users', 'required', 'stageParticipants.notify.warning', function($users) {
+			return count($users) > 1;
+		}));
 		$this->addCheck(new FormValidator($this, 'subject', 'required', 'submission.queries.subjectRequired'));
 		$this->addCheck(new FormValidator($this, 'comment', 'required', 'submission.queries.messageRequired'));
 		$this->addCheck(new FormValidatorPost($this));
@@ -182,7 +184,7 @@ class QueryForm extends Form {
 	 * @param $request PKPRequest
 	 * @param $actionArgs array Optional list of additional arguments
 	 */
-	function fetch($request, $actionArgs = array()) {
+	function fetch($request, $template = null, $display = false, $actionArgs = array()) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_EDITOR);
 
 		$query = $this->getQuery();
@@ -229,7 +231,7 @@ class QueryForm extends Form {
 				}
 
 				// if current user is editor, add all reviewers
-				if ( $user->hasRole(array(ROLE_ID_MANAGER, ROLE_ID_SITE_ADMIN), $context->getId()) || array_intersect(array(ROLE_ID_SUB_EDITOR), $userRoles) ) {
+				if ( $user->hasRole(array(ROLE_ID_MANAGER), $context->getId()) || $user->hasRole(array(ROLE_ID_SITE_ADMIN), CONTEXT_SITE) || array_intersect(array(ROLE_ID_SUB_EDITOR), $userRoles) ) {
 					foreach ($reviewAssignments as $reviewAssignment) {
 						$includeUsers[] = $reviewAssignment->getReviewerId();
 					}
@@ -275,7 +277,7 @@ class QueryForm extends Form {
 					$title = $user->getFullName();
 					$userRoles = array();
 					$usersAssignments = $stageAssignmentDao->getBySubmissionAndStageId($query->getAssocId(), $query->getStageId(), null, $user->getId())->toArray();
-					foreach ($usersAssignments as $assignment) {							
+					foreach ($usersAssignments as $assignment) {
 						foreach ($userProps['groups'] as $userGroup) {
 							if ($userGroup['id'] === (int) $assignment->getUserGroupId() && isset($userGroup['name'][AppLocale::getLocale()])) {
 								$userRoles[] = $userGroup['name'][AppLocale::getLocale()];
@@ -289,7 +291,7 @@ class QueryForm extends Form {
 					}
 					$title =  __('submission.query.participantTitle', array(
 								'fullName' => $user->getFullName(),
-								'userGroup' => join(__('common.listSeparator'), $userRoles),
+								'userGroup' => join(__('common.commaListSeparator'), $userRoles),
 					));
 					return $title;
 				},
@@ -303,7 +305,7 @@ class QueryForm extends Form {
 			));
 		}
 
-		return parent::fetch($request);
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
@@ -320,9 +322,9 @@ class QueryForm extends Form {
 
 	/**
 	 * @copydoc Form::execute()
-	 * @param $request PKPRequest
 	 */
-	function execute($request) {
+	function execute() {
+		$request = Application::getRequest();
 		$queryDao = DAORegistry::getDAO('QueryDAO');
 		$query = $this->getQuery();
 
@@ -371,4 +373,4 @@ class QueryForm extends Form {
 	}
 }
 
-?>
+

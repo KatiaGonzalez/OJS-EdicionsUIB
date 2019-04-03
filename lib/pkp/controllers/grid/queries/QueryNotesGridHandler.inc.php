@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/queries/QueryNotesGridHandler.inc.php
  *
- * Copyright (c) 2016-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2016-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class QueryNotesGridHandler
@@ -178,7 +178,7 @@ class QueryNotesGridHandler extends GridHandler {
 		$queryNoteForm = new QueryNoteForm($this->getRequestArgs(), $this->getQuery(), $request->getUser(), $request->getUserVar('noteId'));
 		$queryNoteForm->readInputData();
 		if ($queryNoteForm->validate()) {
-			$note = $queryNoteForm->execute($request);
+			$note = $queryNoteForm->execute();
 			return DAO::getDataChangedEvent($this->getQuery()->getId());
 		} else {
 			return new JSONMessage(true, $queryNoteForm->fetch($request));
@@ -231,4 +231,4 @@ class QueryNotesGridHandler extends GridHandler {
 
 }
 
-?>
+

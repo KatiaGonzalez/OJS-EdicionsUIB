@@ -4,10 +4,10 @@
 <!--
   * locale/de_DE/submission.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  * Please contact Marco Tullney, marco.tullney@fu-berlin.de, with any questions regarding this translation.
+  * Localization information: https://pkp.sfu.ca/wiki/index.php?title=OJS:_German_(de_DE)
   * Localization strings.
   -->
 
@@ -163,6 +163,7 @@
 	<message key="submission.citations">Literaturhinweise</message>
 	<message key="submission.citations.description">Geben Sie jeden Eintrag in einer neuen Zeile ein, damit er ausgelesen werden kann.</message>
 	<message key="submission.parsedCitations">Ausgelesene Literaturhinweise</message>
+	<message key="submission.parsedCitations.DOI">DOI</message>
 	<message key="submission.parsedCitations.description">Die folgenden Literaturhinweise wurden ausgelesen und werden mit den Metadaten der Einreichung verknüpft.</message>
 	<message key="submission.parsedAndSaveCitations">Literaturhinweise auslesen und speichern</message>
 	<message key="submission.comments.addComment">Kommentar hinzufügen</message>
@@ -583,12 +584,12 @@
 	<message key="submission.license.cc.by-nd4">CC Namensnennung - Keine Bearbeitungen 4.0</message>
 	<message key="submission.license.cc.by4">CC Namensnennung 4.0</message>
 	<message key="submission.license.cc.by-sa4">CC Namensnennung - Weitergabe unter gleichen Bedingungen 4.0</message>
-	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Lizenz Creative Commons Namensnennung - Nicht-kommerziell - Keine Bearbeitungen 4.0 International</a>.]]></message>
-	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Lizenz Creative Commons Namensnennung - Nicht-kommerziell 4.0 International</a>.]]></message>
-	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Lizenz Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International</a>.]]></message>
-	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Lizenz Creative Commons Namensnennung - Keine Bearbeitungen 4.0 International</a>.]]></message>
-	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Lizenz Creative Commons Namensnennung 4.0 International</a>.]]></message>
-	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Lizenz Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International</a>.]]></message>
+	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Lizenz Creative Commons Namensnennung - Nicht-kommerziell - Keine Bearbeitungen 4.0 International</a>.]]></message>
+	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Lizenz Creative Commons Namensnennung - Nicht-kommerziell 4.0 International</a>.]]></message>
+	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Lizenz Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International</a>.]]></message>
+	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">Lizenz Creative Commons Namensnennung - Keine Bearbeitungen 4.0 International</a>.]]></message>
+	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Lizenz Creative Commons Namensnennung 4.0 International</a>.]]></message>
+	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative-Commons-Lizenz" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Dieses Werk steht unter der <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Lizenz Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International</a>.]]></message>
 
 	<!-- Submission Queries -->
 	<message key="submission.queries.submission">Diskussion vor der Begutachtung</message>
@@ -632,4 +633,15 @@
 	<message key="submission.list.incompleteSubmissionNotice">Diese Einreichung muss vervollständigt werden, bevor sie durch eine/n Redakteur/in begutachtet wird.</message>
 	<message key="submission.list.currentStage">Momentan in Phase {$stage}.</message>
 	<message key="submission.list.assignEditor">Redakteur/in zuweisen</message>
+
+	<message key="grid.category.categories">Kategorien</message>
+	<message key="catalog.sortBy.titleAsc">Titel (A-Z)</message>
+	<message key="catalog.sortBy.titleDesc">Titel (Z-A)</message>
+	<message key="catalog.sortBy.datePublishedAsc">Erscheinungsdatum (älteste zuerst)</message>
+	<message key="catalog.sortBy.datePublishedDesc">Erscheinungsdatum (neueste zuerst)</message>
+	<message key="category.coverImage">Titelbild</message>
+	<message key="submission.submit.placement.categories">Kategorien</message>
+	<message key="submission.currentCoverImage">Aktuelles Bild</message>
+	<message key="catalog.browseTitles">{$numTitles} Titel</message>
+	<message key="catalog.noTitlesSection">In dieser Rubrik wurden bisher keine Titel veröffentlicht.</message>
 </locale>

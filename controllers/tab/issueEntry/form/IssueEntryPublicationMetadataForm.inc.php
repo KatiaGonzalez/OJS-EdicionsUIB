@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/issueEntry/form/IssueEntryPublicationMetadataForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueEntryPublicationMetadataForm
@@ -212,9 +212,10 @@ class IssueEntryPublicationMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this published
 	 * monograph.
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
 
+		$request = Application::getRequest();
 		$submission = $this->getSubmission();
 		$context = $request->getContext();
 
@@ -358,4 +359,4 @@ class IssueEntryPublicationMetadataForm extends Form {
 	}
 }
 
-?>
+

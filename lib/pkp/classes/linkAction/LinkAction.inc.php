@@ -8,8 +8,8 @@
 /**
  * @file classes/linkAction/LinkAction.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LinkAction
@@ -84,6 +84,14 @@ class LinkAction {
 	}
 
 	/**
+	 * Set the localized action title.
+	 * @return string
+	 */
+	function setTitle($title) {
+		$this->_title = $title;
+	}
+
+	/**
 	 * Get the localized tool tip.
 	 * @return string
 	 */
@@ -116,4 +124,4 @@ class LinkAction {
 	}
 }
 
-?>
+

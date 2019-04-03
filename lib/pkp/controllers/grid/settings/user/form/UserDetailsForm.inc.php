@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/user/form/UserDetailsForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserDetailsForm
@@ -38,11 +38,13 @@ class UserDetailsForm extends UserForm {
 			$this->author = null;
 		}
 
+		// the users register for the site, thus
+		// the site primary locale is the required default locale
 		$site = $request->getSite();
+		$this->addSupportedFormLocale($site->getPrimaryLocale());
 
 		// Validation checks for this form
 		$form = $this;
-		//If manager create new user
 		if ($userId == null) {
 			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
 			$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.register.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array($this->userId, true), true));
@@ -51,35 +53,29 @@ class UserDetailsForm extends UserForm {
 			if (!Config::getVar('security', 'implicit_auth')) {
 				$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
 				$this->addCheck(new FormValidatorLength($this, 'password', 'required', 'user.register.form.passwordLengthRestriction', '>=', $site->getMinPasswordLength()));
-				//Afegit per Katia Gonzalez per controlar que la password estigui formada per lletres i números
-				$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.register.form.passwordBadFormat', function($password){
-					    return (preg_match("#[0-9]+#", $password) + preg_match("#[a-zA-Z]+#", $password) == 2); 
-				}));
-				//end afegit
 				$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.register.form.passwordsDoNotMatch', function($password) use ($form) {
 					return $password == $form->getData('password2');
 				}));
 			}
-		//If manager modify existent user
 		} else {
 			$userDao = DAORegistry::getDAO('UserDAO');
 			$this->user = $userDao->getById($userId);
 
 			$this->addCheck(new FormValidatorLength($this, 'password', 'optional', 'user.register.form.passwordLengthRestriction', '>=', $site->getMinPasswordLength()));
-			//Afegit per Katia Gonzalez per controlar que la password estigui formada per lletres i números
-			$this->addCheck(new FormValidatorCustom($this, 'password', 'optional', 'user.register.form.passwordBadFormat', function($password){
-				    return (preg_match("#[0-9]+#", $password) + preg_match("#[a-zA-Z]+#", $password) == 2); 
-			}));
-			$this->addCheck(new FormValidatorCustom($this, 'mustChangePassword', 'optional', 'user.register.form.changePasswordRequired', function() use($form) {
-				return false; //&& ($form->getData('mustChangePassword')) || ($form->getData('password') == null); 
-			}));
-			//end afegit
 			$this->addCheck(new FormValidatorCustom($this, 'password', 'optional', 'user.register.form.passwordsDoNotMatch', function($password) use ($form) {
 				return $password == $form->getData('password2');
 			}));
 		}
-		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
-		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'givenName', 'required', 'user.profile.form.givenNameRequired', $site->getPrimaryLocale()));
+		$this->addCheck(new FormValidatorCustom($this, 'familyName', 'optional', 'user.profile.form.givenNameRequired.locale', function($familyName) use ($form) {
+			$givenNames = $form->getData('givenName');
+			foreach ($familyName as $locale => $value) {
+				if (!empty($value) && empty($givenNames[$locale])) {
+					return false;
+				}
+			}
+			return true;
+		}));
 		$this->addCheck(new FormValidatorUrl($this, 'userUrl', 'optional', 'user.profile.form.urlInvalid'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array($this->userId, true), true));
@@ -90,10 +86,9 @@ class UserDetailsForm extends UserForm {
 
 	/**
 	 * Initialize form data from current user profile.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 */
-	function initData($args, $request) {
+	function initData() {
+		$request = Application::getRequest();
 		$context = $request->getContext();
 		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 
@@ -108,13 +103,10 @@ class UserDetailsForm extends UserForm {
 			$data = array(
 				'authId' => $user->getAuthId(),
 				'username' => $user->getUsername(),
-				'salutation' => $user->getSalutation(),
-				'firstName' => $user->getFirstName(),
-				'middleName' => $user->getMiddleName(),
-				'lastName' => $user->getLastName(),
-				'suffix' => $user->getSuffix(),
+				'givenName' => $user->getGivenName(null), // Localized
+				'familyName' => $user->getFamilyName(null), // Localized
+				'preferredPublicName' => $user->getPreferredPublicName(null), // Localized
 				'signature' => $user->getSignature(null), // Localized
-				'initials' => $user->getInitials(),
 				'affiliation' => $user->getAffiliation(null), // Localized
 				'email' => $user->getEmail(),
 				'userUrl' => $user->getUrl(),
@@ -135,11 +127,10 @@ class UserDetailsForm extends UserForm {
 		} else if (isset($this->author)) {
 			$author = $this->author;
 			$data = array(
-				'salutation' => $author->getSalutation(),
-				'firstName' => $author->getFirstName(),
-				'middleName' => $author->getMiddleName(),
-				'lastName' => $author->getLastName(),
+				'givenName' => $author->getGivenName(null), // Localized
+				'familyName' => $author->getFamilyName(null), // Localized
 				'affiliation' => $author->getAffiliation(null), // Localized
+				'preferredPublicName' => $author->getPreferredPublicName(null), // Localized
 				'email' => $author->getEmail(),
 				'userUrl' => $author->getUrl(),
 				'orcid' => $author->getOrcid(),
@@ -155,15 +146,13 @@ class UserDetailsForm extends UserForm {
 			$this->setData($key, $value);
 		}
 
-		parent::initData($args, $request);
+		parent::initData();
 	}
 
 	/**
-	 * Display the form.
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @copydoc UserForm::display
 	 */
-	function display($args, $request) {
+	function display($request = null, $template = null) {
 		$site = $request->getSite();
 		$templateMgr = TemplateManager::getManager($request);
 
@@ -171,6 +160,7 @@ class UserDetailsForm extends UserForm {
 			'minPasswordLength' => $site->getMinPasswordLength(),
 			'source' => $request->getUserVar('source'),
 			'userId' => $this->userId,
+			'sitePrimaryLocale' => $site->getPrimaryLocale(),
 		));
 
 		if (isset($this->user)) {
@@ -192,7 +182,7 @@ class UserDetailsForm extends UserForm {
 			$templateMgr->assign('authSourceOptions', $authSourceOptions);
 		}
 
-		return parent::display($args, $request);
+		return parent::display($request, $template);
 	}
 
 
@@ -207,12 +197,9 @@ class UserDetailsForm extends UserForm {
 			'authId',
 			'password',
 			'password2',
-			'salutation',
-			'firstName',
-			'middleName',
-			'lastName',
-			'suffix',
-			'initials',
+			'givenName',
+			'familyName',
+			'preferredPublicName',
 			'signature',
 			'affiliation',
 			'email',
@@ -248,11 +235,10 @@ class UserDetailsForm extends UserForm {
 
 	/**
 	 * Create or update a user.
-	 * @param $args array
-	 * @param $request PKPRequest
 	 */
-	function &execute($args, $request) {
+	function execute() {
 		$userDao = DAORegistry::getDAO('UserDAO');
+		$request = Application::getRequest();
 		$context = $request->getContext();
 
 		if (!isset($this->user)) {
@@ -260,12 +246,9 @@ class UserDetailsForm extends UserForm {
 			$this->user->setInlineHelp(1); // default new users to having inline help visible
 		}
 
-		$this->user->setSalutation($this->getData('salutation'));
-		$this->user->setFirstName($this->getData('firstName'));
-		$this->user->setMiddleName($this->getData('middleName'));
-		$this->user->setLastName($this->getData('lastName'));
-		$this->user->setSuffix($this->getData('suffix'));
-		$this->user->setInitials($this->getData('initials'));
+		$this->user->setGivenName($this->getData('givenName'), null); // Localized
+		$this->user->setFamilyName($this->getData('familyName'), null); // Localized
+		$this->user->setPreferredPublicName($this->getData('preferredPublicName'), null); // Localized
 		$this->user->setAffiliation($this->getData('affiliation'), null); // Localized
 		$this->user->setSignature($this->getData('signature'), null); // Localized
 		$this->user->setEmail($this->getData('email'));
@@ -300,7 +283,7 @@ class UserDetailsForm extends UserForm {
 			$auth =& $authDao->getPlugin($this->user->getAuthId());
 		}
 
-		parent::execute($args, $request);
+		parent::execute();
 
 		if ($this->user->getId() != null) {
 			if ($this->getData('password') !== '') {
@@ -349,7 +332,11 @@ class UserDetailsForm extends UserForm {
 				$mail->setReplyTo($context->getSetting('contactEmail'), $context->getSetting('contactName'));
 				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password, 'userFullName' => $this->user->getFullName()));
 				$mail->addRecipient($this->user->getEmail(), $this->user->getFullName());
-				$mail->send();
+				if (!$mail->send()) {
+					import('classes.notification.NotificationManager');
+					$notificationMgr = new NotificationManager();
+					$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));
+				}
 			}
 		}
 
@@ -361,4 +348,4 @@ class UserDetailsForm extends UserForm {
 	}
 }
 
-?>
+

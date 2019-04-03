@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/navigationMenus/NavigationMenusGridHandler.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NavigationMenusGridHandler
@@ -198,7 +198,7 @@ class NavigationMenusGridHandler extends GridHandler {
 		$navigationMenusForm->readInputData();
 
 		if ($navigationMenusForm->validate()) {
-			$navigationMenusForm->execute($request);
+			$navigationMenusForm->execute();
 
 			if ($navigationMenuId) {
 				// Successful edit of an existing NavigationMenu.
@@ -249,4 +249,4 @@ class NavigationMenusGridHandler extends GridHandler {
 
 }
 
-?>
+

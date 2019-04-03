@@ -6,8 +6,8 @@
 /**
  * @file classes/user/form/RegistrationForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RegistrationForm
@@ -45,17 +45,9 @@ class RegistrationForm extends Form {
 		$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.register.form.passwordsDoNotMatch', function($password) use ($form) {
 			return $password == $form->getData('password2');
 		}));
-		//Afegit per Katia Gonzalez
-		$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.register.form.passwordBadFormat', function($password){
-			    return (preg_match("#[0-9]+#", $password) + preg_match("#[a-zA-Z]+#", $password) == 2); 
-		}));
-		//end afegit
 
-		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
-		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
-		//Afegit per Katia Gonzalez
-		$this->addCheck(new FormValidator($this, 'ageConfirm', 'required', 'user.profile.form.ageRequired'));
-		//end afegit
+		$this->addCheck(new FormValidator($this, 'givenName', 'required', 'user.profile.form.givenNameRequired'));
+
 		$this->addCheck(new FormValidator($this, 'country', 'required', 'user.profile.form.countryRequired'));
 
 		// Email checks
@@ -106,9 +98,6 @@ class RegistrationForm extends Form {
 		$countries = $countryDao->getCountries();
 		$templateMgr->assign('countries', $countries);
 
-		$site = $request->getSite();
-		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-
 		import('lib.pkp.classes.user.form.UserFormHelper');
 		$userFormHelper = new UserFormHelper();
 		$userFormHelper->assignRoleContent($templateMgr, $request);
@@ -125,9 +114,8 @@ class RegistrationForm extends Form {
 
 	/**
 	 * @copydoc Form::initData()
-	 * @param $request Request
 	 */
-	function initData($request) {
+	function initData() {
 		$this->_data = array(
 			'userLocales' => array(),
 			'userGroupIds' => array(),
@@ -140,15 +128,12 @@ class RegistrationForm extends Form {
 	function readInputData() {
 		parent::readInputData();
 
-		//afegit per Katia Gonzalez 'ageConfirm'
 		$this->readUserVars(array(
 			'username',
 			'password',
 			'password2',
-			'firstName',
-			'middleName',
-			'lastName',
-			'ageConfirm', 
+			'givenName',
+			'familyName',
 			'affiliation',
 			'email',
 			'country',
@@ -217,10 +202,9 @@ class RegistrationForm extends Form {
 
 	/**
 	 * Register a new user.
-	 * @param $request PKPRequest
 	 * @return int|null User ID, or false on failure
 	 */
-	function execute($request) {
+	function execute() {
 		$requireValidation = Config::getVar('email', 'require_validation');
 		$userDao = DAORegistry::getDAO('UserDAO');
 
@@ -229,14 +213,25 @@ class RegistrationForm extends Form {
 
 		$user->setUsername($this->getData('username'));
 
+		// The multilingual user data (givenName, familyName and affiliation) will be saved
+		// in the current UI locale and copied in the site's primary locale too
+		$request = Application::getRequest();
+		$site = $request->getSite();
+		$sitePrimaryLocale = $site->getPrimaryLocale();
+		$currentLocale = AppLocale::getLocale();
+
 		// Set the base user fields (name, etc.)
-		$user->setFirstName($this->getData('firstName'));
-		$user->setMiddleName($this->getData('middleName'));
-		$user->setLastName($this->getData('lastName'));
-		$user->setInitials($this->getData('initials'));
+		$user->setGivenName($this->getData('givenName'), $currentLocale);
+		$user->setFamilyName($this->getData('familyName'), $currentLocale);
 		$user->setEmail($this->getData('email'));
 		$user->setCountry($this->getData('country'));
-		$user->setAffiliation($this->getData('affiliation'), null); // Localized
+		$user->setAffiliation($this->getData('affiliation'), $currentLocale);
+
+		if ($sitePrimaryLocale != $currentLocale) {
+			$user->setGivenName($this->getData('givenName'), $sitePrimaryLocale);
+			$user->setFamilyName($this->getData('familyName'), $sitePrimaryLocale);
+			$user->setAffiliation($this->getData('affiliation'), $sitePrimaryLocale);
+		}
 
 		$user->setDateRegistered(Core::getCurrentDate());
 		$user->setInlineHelp(1); // default new users to having inline help visible.
@@ -256,7 +251,7 @@ class RegistrationForm extends Form {
 			$user->setDisabledReason(__('user.login.accountNotValidated', array('email' => $this->getData('email'))));
 		}
 
-		parent::execute($user);
+		parent::execute();
 
 		$userDao->insertObject($user);
 		$userId = $user->getId();
@@ -273,7 +268,7 @@ class RegistrationForm extends Form {
 		if ($request->getContext() && !$this->getData('reviewerGroup')) {
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 			$defaultReaderGroup = $userGroupDao->getDefaultByRoleId($request->getContext()->getId(), ROLE_ID_READER);
-			$userGroupDao->assignUserToGroup($user->getId(), $defaultReaderGroup->getId(), $request->getContext()->getId());
+			if ($defaultReaderGroup) $userGroupDao->assignUserToGroup($user->getId(), $defaultReaderGroup->getId(), $request->getContext()->getId());
 		} else {
 			import('lib.pkp.classes.user.form.UserFormHelper');
 			$userFormHelper = new UserFormHelper();
@@ -325,7 +320,11 @@ class RegistrationForm extends Form {
 				'activateUrl' => $request->url($contextPath, 'user', 'activateUser', array($this->getData('username'), $accessKey))
 			));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
-			$mail->send();
+			if (!$mail->send()) {
+				import('classes.notification.NotificationManager');
+				$notificationMgr = new NotificationManager();
+				$notificationMgr->createTrivialNotification($request->getUser()->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('email.compose.error')));
+			}
 			unset($mail);
 		}
 		return $userId;
@@ -349,4 +348,4 @@ class RegistrationForm extends Form {
 	}
 }
 
-?>
+
